@@ -16,6 +16,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'workload install maui'
+
 - task: NuGetToolInstaller@1
   inputs:
     versionSpec: '>= 6.0.0'
