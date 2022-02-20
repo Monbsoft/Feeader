@@ -1,19 +1,23 @@
-﻿namespace Monbsoft.Feeader.Pages;
+﻿using Monbsoft.Feeader.ViewModels;
+
+namespace Monbsoft.Feeader.Pages;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
+    private MainViewModel _viewModel => BindingContext as MainViewModel;
 
-    public MainPage()
+    public MainPage(MainViewModel mainViewModel)
     {
         InitializeComponent();
+
+        BindingContext = mainViewModel;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+
+    protected override async void OnAppearing()
     {
-        count++;
-        CounterLabel.Text = $"Current count: {count}";
-
-        SemanticScreenReader.Announce(CounterLabel.Text);
+        base.OnAppearing();
+        await _viewModel.InitializeAsync();
     }
+
 }
