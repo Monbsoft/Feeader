@@ -1,4 +1,6 @@
-﻿namespace Monbsoft.Feeader
+﻿using Monbsoft.Feeader.Pages;
+
+namespace Monbsoft.Feeader
 {
     public partial class App : Application
     {
