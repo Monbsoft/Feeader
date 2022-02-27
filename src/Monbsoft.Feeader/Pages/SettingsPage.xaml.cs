@@ -9,4 +9,13 @@ public partial class SettingsPage : ContentPage
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
+
+	public SettingsViewModel ViewModel => BindingContext as SettingsViewModel;
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+		await ViewModel.InitializeAsync();
+
+	}
 }
