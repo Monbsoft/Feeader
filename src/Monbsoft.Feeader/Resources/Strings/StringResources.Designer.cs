@@ -61,11 +61,29 @@ namespace Monbsoft.Feeader.Resources.Strings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Feeds.
+        /// </summary>
+        internal static string Feeds {
+            get {
+                return ResourceManager.GetString("Feeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My feeds.
         /// </summary>
         internal static string MyFeeds {
             get {
                 return ResourceManager.GetString("MyFeeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
     }

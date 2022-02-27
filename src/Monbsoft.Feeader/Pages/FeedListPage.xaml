@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Monbsoft.Feeader.ViewModels"
              xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
-             x:Class="Monbsoft.Feeader.Pages.MainPage"             
+             x:Class="Monbsoft.Feeader.Pages.FeedListPage"             
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                         <Label Text="{Binding Title}">
                         </Label>
                         <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
+                                <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:FeedListViewModel}}}"
                                                       CommandParameter="{Binding}"/>                            
                         </Grid.GestureRecognizers>
                     </Grid>
@@ -36,6 +36,10 @@
         <CollectionView BackgroundColor="{AppThemeBinding Light={StaticResource Grey2}, Dark={StaticResource Grey8}}"  
                         Grid.Column="1"
                         ItemsSource="{Binding SelectedFeed.Articles}">
+            <CollectionView.Header>
+                <Label Text="{Binding SelectedFeed.Title}"
+                       Style="{StaticResource H5LabelStyle}"/>
+            </CollectionView.Header>            
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"
                                  HorizontalItemSpacing="5"
@@ -62,7 +66,7 @@
                                MaxLines="2"
                                Style="{StaticResource BodyLLabelStyle}"/>
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SelectArticleCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
+                            <TapGestureRecognizer Command="{Binding SelectArticleCommand, Source={RelativeSource AncestorType={x:Type viewmodels:FeedListViewModel}}}"
                                                   CommandParameter="{Binding}"/>
                         </Grid.GestureRecognizers>
                     </Grid>

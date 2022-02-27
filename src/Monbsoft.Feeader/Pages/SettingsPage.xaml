@@ -1,0 +1,14 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
+             x:Class="Monbsoft.Feeader.Pages.SettingsPage"
+             Title="{x:Static res:StringResources.Settings}"
+             BackgroundColor="White">
+    <Grid>
+        <Grid.RowDefinitions>
+        </Grid.RowDefinitions>
+        <Label Text="Welcome to .NET MAUI!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+    </Grid>
+</ContentPage>

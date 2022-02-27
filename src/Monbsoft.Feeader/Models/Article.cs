@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monbsoft.Feeader.Models
+﻿namespace Monbsoft.Feeader.Models
 {
     public class Article
     {
-
         public Article(string id, string title, DateTime date, string link)
         {
-            Id= id;
+            Id = id;
             Date = date;
-            Title= title.Trim();
+            Title = title.Trim();
             Link = link;
         }
-        public string Id { get; }
-        public DateTime Date { get;  }
+
+        public DateTime Date { get; }
         public string Description { get; private set; }
-        public string Title { get; }
+        public string Id { get; }
         public string Link { get; }
+        public string Title { get; }
 
         public override string ToString()
         {

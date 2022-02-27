@@ -6,14 +6,14 @@ using System.Windows.Input;
 
 namespace Monbsoft.Feeader.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class FeedListViewModel : BaseViewModel
     {
         private readonly FeedService _feedService;
         private List<FeedViewModel> _feeds;
         private ArticleViewModel _selectedArticle;
         private FeedViewModel _selectedFeed;
 
-        public MainViewModel(FeedService feedService)
+        public FeedListViewModel(FeedService feedService)
         {
             _feedService = feedService;
         }

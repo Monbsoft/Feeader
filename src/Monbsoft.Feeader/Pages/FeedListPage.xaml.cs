@@ -2,15 +2,15 @@
 
 namespace Monbsoft.Feeader.Pages;
 
-public partial class MainPage : ContentPage
+public partial class FeedListPage : ContentPage
 {
-    private MainViewModel _viewModel => BindingContext as MainViewModel;
+    private FeedListViewModel _viewModel => BindingContext as FeedListViewModel;
 
-    public MainPage(MainViewModel mainViewModel)
+    public FeedListPage(FeedListViewModel viewModel)
     {
         InitializeComponent();
 
-        BindingContext = mainViewModel;
+        BindingContext = viewModel;
     }
 
 
