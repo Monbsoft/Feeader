@@ -17,19 +17,13 @@ namespace Monbsoft.Feeader.ViewModels
             _articles = new ObservableCollection<Article>();
             _feed = feed;
             _feedService = feedService;
-            Name = feed.Name;
+            Title = feed.Name;
         }
 
         public ObservableCollection<Article> Articles
         {
             get { return _articles; }
             set { SetProperty(ref _articles, value); }
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
         }
 
         internal async Task InitializeAsync()

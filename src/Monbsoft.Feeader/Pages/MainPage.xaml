@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Monbsoft.Feeader.ViewModels"
+             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
              x:Class="Monbsoft.Feeader.Pages.MainPage"             
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <Grid>
@@ -12,13 +13,17 @@
         <CollectionView
             Margin="10,0"
             ItemsSource="{Binding Feeds}">
+            <CollectionView.Header>
+                <Label Text="{x:Static res:StringResources.MyFeeds}"
+                       Style="{StaticResource H5LabelStyle}"/>
+            </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Text="{Binding Name}">
+                        <Label Text="{Binding Title}">
                         </Label>
                         <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
