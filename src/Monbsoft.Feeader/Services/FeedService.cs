@@ -29,12 +29,14 @@ namespace Monbsoft.Feeader.Services
             return await Task.Run(() =>
             {
                 var articles = new List<Article>();
-                using (var reader = XmlReader.Create(feed.Uri))
+                using (var reader = XmlReader.Create(feed.Link))
                 {
                     var data = SyndicationFeed.Load(reader);
                     foreach(var item in data.Items)
                     {
-                        var article = new Article(item.Id, item.Title.Text, item.PublishDate.Date);
+
+                        var article = new Article(item.Id, item.Title.Text, item.PublishDate.DateTime, item.Links.First().Uri.AbsoluteUri)
+                            .WithDescription(item.Summary?.Text);
                         articles.Add(article);
 
                     }

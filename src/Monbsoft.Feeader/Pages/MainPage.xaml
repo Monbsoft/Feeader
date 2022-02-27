@@ -2,15 +2,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Monbsoft.Feeader.ViewModels"
              x:Class="Monbsoft.Feeader.Pages.MainPage"             
-             BackgroundColor="{DynamicResource SecondaryColor}">
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <CollectionView
-            Margin="8,0"
+            Margin="10,0"
             ItemsSource="{Binding Feeds}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -19,22 +19,28 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
-                                                      CommandParameter="{Binding}"/>
-                            </Label.GestureRecognizers>
                         </Label>
+                        <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
+                                                      CommandParameter="{Binding}"/>                            
+                        </Grid.GestureRecognizers>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView 
-            Grid.Column="1"
-            ItemsSource="{Binding SelectedFeed.Articles}">
+        <CollectionView BackgroundColor="{AppThemeBinding Light={StaticResource Grey2}, Dark={StaticResource Grey8}}"  
+                        Grid.Column="1"
+                        ItemsSource="{Binding SelectedFeed.Articles}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 HorizontalItemSpacing="5"
+                                 VerticalItemSpacing="8" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
                         <Grid.RowDefinitions>
+                            <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
@@ -43,11 +49,21 @@
                         <Label Text="{Binding Title}" 
                                Grid.Row="1"
                                LineBreakMode="TailTruncation"
-                               MaxLines="1"/>
+                               MaxLines="2"
+                               Style="{StaticResource H6LabelStyle}"/>
+                        <Label Text="{Binding Description}"
+                               Grid.Row="2"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="2"
+                               Style="{StaticResource BodyLLabelStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectArticleCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
+                                                  CommandParameter="{Binding}"/>
+                        </Grid.GestureRecognizers>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
         </CollectionView>
+        <WebView Grid.Column="2" Source="{Binding SelectedArticle.Link}" />
     </Grid>
 </ContentPage>

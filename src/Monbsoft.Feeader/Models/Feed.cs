@@ -8,11 +8,11 @@ namespace Monbsoft.Feeader.Models
 {
     public  class Feed
     {
-        public Feed(string name, string uri)
+        public Feed(string name, string link)
         {          
             Articles = new List<Article>();
             Name = name;
-            Uri = uri;
+            Link = link;
         }
 
         public List<Article> Articles { get; }
@@ -21,7 +21,7 @@ namespace Monbsoft.Feeader.Models
 
         public string Name { get; }    
 
-        public string Uri { get; }
+        public string Link { get; }
 
         public void AddArticles(IEnumerable<Article> articles)
         {

@@ -35,7 +35,6 @@ namespace Monbsoft.Feeader.ViewModels
         internal async Task InitializeAsync()
         {
             var articles = await _feedService.GetArticlesAsync(_feed);
-            await Task.Delay(TimeSpan.FromSeconds(5));
             _feed.AddArticles(articles.OrderByDescending(a => a.Date));
             _articles.Clear();
             foreach(var article in articles)

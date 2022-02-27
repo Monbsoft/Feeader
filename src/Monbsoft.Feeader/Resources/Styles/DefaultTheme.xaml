@@ -23,6 +23,25 @@
     <Color x:Key="Grey9">#323130</Color>
     <Color x:Key="Grey0">#979797</Color>
 
+    <Style TargetType="Label"
+           x:Key="BodySLabelStyle">
+        <Setter Property="FontSize"
+                Value="14" />
+        <Setter Property="FontFamily"
+                Value="SegoeUiRegular" />
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Grey1}}" />
+    </Style>
+
+    <Style TargetType="Label"
+           x:Key="BodyLLabelStyle">
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="SegoeUiSemibold" />
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Grey1}}" />
+    </Style>
 
     <Style TargetType="Label"
            x:Key="BodyXLLabelStyle">
@@ -65,16 +84,6 @@
     </Style>
 
     <Style TargetType="Label"
-           x:Key="BodySLabelStyle">
-        <Setter Property="FontSize"
-                Value="14" />
-        <Setter Property="FontFamily"
-                Value="SegoeUiRegular" />
-        <Setter Property="TextColor"
-                Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Grey1}}" />
-    </Style>
-
-    <Style TargetType="Label"
            x:Key="LinkLLabelStyle">
         <Setter Property="FontSize"
                 Value="20" />
@@ -82,6 +91,16 @@
                 Value="SegoeUiSemibold" />
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource Grey8}, Dark={StaticResource Grey1}}" />
+    </Style>
+
+    <Style TargetType="Label"
+           x:Key="SH6LabelStyle">
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontFamily"
+                Value="SegoeUiRegular" />
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource Grey7}, Dark={StaticResource Grey1}}" />
     </Style>
 
     <Style TargetType="Label">
