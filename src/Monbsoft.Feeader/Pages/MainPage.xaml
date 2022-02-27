@@ -4,15 +4,20 @@
              x:Class="Monbsoft.Feeader.Pages.MainPage"             
              BackgroundColor="{DynamicResource SecondaryColor}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="300"/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <CollectionView
             Margin="8,0"
             ItemsSource="{Binding Feeds}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectFeedCommand, Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}}"
@@ -22,6 +27,27 @@
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView 
+            Grid.Column="1"
+            ItemsSource="{Binding SelectedFeed.Articles}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"
+                               Style="{StaticResource BodySLabelStyle}"/>
+                        <Label Text="{Binding Title}" 
+                               Grid.Row="1"
+                               LineBreakMode="TailTruncation"
+                               MaxLines="1"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
         </CollectionView>
     </Grid>
 </ContentPage>

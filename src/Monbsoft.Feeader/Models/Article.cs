@@ -8,13 +8,15 @@ namespace Monbsoft.Feeader.Models
 {
     public class Article
     {
-       
-        public Article(string id, string title)
+
+        public Article(string id, string title, DateTime date)
         {
             Id= id;
+            Date = date;
             Title= title;
         }
         public string Id { get; }
+        public DateTime Date { get; }
         public string Title { get; }
 
         public override string ToString()

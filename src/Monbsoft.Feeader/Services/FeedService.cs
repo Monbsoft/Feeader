@@ -24,9 +24,9 @@ namespace Monbsoft.Feeader.Services
             return Task.FromResult(feeds.AsEnumerable<Feed>());
         }
 
-        public async Task<IEnumerable<Article>> ReadArticlesAsync(Feed feed)
+        public async Task<IEnumerable<Article>> GetArticlesAsync(Feed feed)
         {
-            var articles = await Task.Run(() =>
+            return await Task.Run(() =>
             {
                 var articles = new List<Article>();
                 using (var reader = XmlReader.Create(feed.Uri))
@@ -34,14 +34,14 @@ namespace Monbsoft.Feeader.Services
                     var data = SyndicationFeed.Load(reader);
                     foreach(var item in data.Items)
                     {
-                        var article = new Article(item.Id, item.Title.Text);
+                        var article = new Article(item.Id, item.Title.Text, item.PublishDate.Date);
                         articles.Add(article);
 
                     }
                 };
                 return articles;
             });
-            return articles;
+
         }
     }
 }

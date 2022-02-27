@@ -3,15 +3,16 @@
              xmlns:local="clr-namespace:Monbsoft.Feeader"
              x:Class="Monbsoft.Feeader.App">
     <Application.Resources>
+        <ResourceDictionary Source="Resources/Styles/DefaultTheme.xaml"/>
         <ResourceDictionary>
 
             <Color x:Key="PrimaryColor">#512bdf</Color>
             <Color x:Key="SecondaryColor">White</Color>
 
-            <Style TargetType="Label">
+            <!--<Style TargetType="Label">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
                 <Setter Property="FontFamily" Value="OpenSansRegular" />
-            </Style>
+            </Style>-->
 
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="{DynamicResource SecondaryColor}" />

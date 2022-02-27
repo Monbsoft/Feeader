@@ -9,7 +9,7 @@ namespace Monbsoft.Feeader.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly FeedService _feedService;
-        private List<Feed> _feeds;
+        private List<FeedViewModel> _feeds;
         private FeedViewModel _selectedFeed;
 
         public MainViewModel(FeedService feedService)
@@ -17,7 +17,11 @@ namespace Monbsoft.Feeader.ViewModels
             _feedService = feedService;
         }
 
-        public ICommand SelectFeedCommand => new AsyncCommand<Feed>(SelectFeedCommandExecute);
+        public List<FeedViewModel> Feeds
+        {
+            get { return _feeds; }
+            set { SetProperty(ref _feeds, value); }
+        }
 
         public FeedViewModel SelectedFeed
         {
@@ -25,22 +29,18 @@ namespace Monbsoft.Feeader.ViewModels
             set { SetProperty(ref _selectedFeed, value); }
         }
 
-        public List<Feed> Feeds
-        {
-            get { return _feeds; }
-            set { SetProperty(ref _feeds, value); }
-        }
+        public ICommand SelectFeedCommand => new AsyncCommand<FeedViewModel>(SelectFeedCommandExecute);
 
         public async Task InitializeAsync()
         {
             var feeds = await _feedService.GetAllFeeds();
-            Feeds = feeds?.ToList();
+            Feeds = feeds?.Select(f => new FeedViewModel(f, _feedService)).ToList();
         }
 
-        private async Task SelectFeedCommandExecute(Feed feed)
+        private async Task SelectFeedCommandExecute(FeedViewModel feed)
         {
-            _selectedFeed = new FeedViewModel(feed, _feedService);
-            await _selectedFeed.InitializeAsync();
+            SelectedFeed = feed;
+            await SelectedFeed?.InitializeAsync();
         }
     }
 }
