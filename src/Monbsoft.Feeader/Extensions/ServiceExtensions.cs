@@ -12,6 +12,7 @@ namespace Monbsoft.Feeader.Extensions
         public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<FeedService>();
+            builder.Services.AddSingleton<SettingsService>();
             return builder;
         }
     }

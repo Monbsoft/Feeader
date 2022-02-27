@@ -5,11 +5,11 @@ namespace Monbsoft.Feeader
 {
     public partial class App : Application
     {
-        public App(MainViewModel viewModel)
+        public App(ShellViewModel viewModel)
         {
             InitializeComponent();
 
-            MainPage = new MainPage(viewModel);
+            MainPage = new DesktopShell(viewModel);
         }
     }
 }

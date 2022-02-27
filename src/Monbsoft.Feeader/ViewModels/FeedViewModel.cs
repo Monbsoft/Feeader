@@ -2,6 +2,7 @@
 using Monbsoft.Feeader.Services;
 using MvvmHelpers;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace Monbsoft.Feeader.ViewModels
 {
@@ -10,14 +11,13 @@ namespace Monbsoft.Feeader.ViewModels
         private readonly Feed _feed;
         private readonly FeedService _feedService;
         private ObservableCollection<Article> _articles;
-        private string _name;
 
         public FeedViewModel(Feed feed, FeedService feedService)
         {
             _articles = new ObservableCollection<Article>();
             _feed = feed;
             _feedService = feedService;
-            Name = feed.Name;
+            Title = feed.Name;
         }
 
         public ObservableCollection<Article> Articles
@@ -26,21 +26,26 @@ namespace Monbsoft.Feeader.ViewModels
             set { SetProperty(ref _articles, value); }
         }
 
-        public string Name
-        {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
-        }
-
         internal async Task InitializeAsync()
         {
-            var articles = await _feedService.GetArticlesAsync(_feed);
-            await Task.Delay(TimeSpan.FromSeconds(5));
-            _feed.AddArticles(articles.OrderByDescending(a => a.Date));
-            _articles.Clear();
-            foreach(var article in articles)
+            try
             {
-                _articles.Add(article);
+                IsBusy = true;
+                _articles.Clear();
+                var articles = await _feedService.GetArticlesAsync(_feed);
+                _feed.AddArticles(articles.OrderByDescending(a => a.Date));
+                foreach (var article in articles)
+                {
+                    _articles.Add(article);
+                }                
+            }
+            catch(XmlException)
+            {
+                Articles.Clear();
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

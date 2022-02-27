@@ -59,9 +59,34 @@
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Style\" />
+	  <Folder Include="Views\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\FeedListPage.xaml.cs">
+	    <DependentUpon>FeedListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Strings\StringResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>StringResources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Strings\StringResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\DesktopShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\DefaultTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

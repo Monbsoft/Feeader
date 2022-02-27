@@ -1,0 +1,12 @@
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Monbsoft.Feeader.Pages"
+             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
+             x:Class="Monbsoft.Feeader.Pages.DesktopShell"
+             Title="Feeader"
+             BackgroundColor="White">
+    <ShellContent Title="{Binding Feeds.Title}"
+                  ContentTemplate="{DataTemplate pages:FeedListPage}"/>
+    <ShellContent Title="{Binding Settings.Title}"
+                  ContentTemplate="{DataTemplate pages:SettingsPage}"/>
+</Shell>

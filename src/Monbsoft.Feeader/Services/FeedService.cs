@@ -1,16 +1,18 @@
 ﻿using Monbsoft.Feeader.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace Monbsoft.Feeader.Services
 {
     public class FeedService
     {
+        private const string localFileName = "settings.json";
+        private readonly string _localPath;
+
+        public FeedService()
+        {
+            _localPath = Path.Combine(FileSystem.AppDataDirectory, localFileName);
+        }
 
         public Task<IEnumerable<Feed>> GetAllFeeds()
         {
@@ -24,24 +26,25 @@ namespace Monbsoft.Feeader.Services
             return Task.FromResult(feeds.AsEnumerable<Feed>());
         }
 
+
+
         public async Task<IEnumerable<Article>> GetArticlesAsync(Feed feed)
         {
             return await Task.Run(() =>
             {
                 var articles = new List<Article>();
-                using (var reader = XmlReader.Create(feed.Uri))
+                using (var reader = XmlReader.Create(feed.Link))
                 {
                     var data = SyndicationFeed.Load(reader);
-                    foreach(var item in data.Items)
+                    foreach (var item in data.Items)
                     {
-                        var article = new Article(item.Id, item.Title.Text, item.PublishDate.Date);
+                        var article = new Article(item.Id, item.Title.Text, item.PublishDate.DateTime, item.Links.First().Uri.AbsoluteUri)
+                            .WithDescription(item.Summary?.Text);
                         articles.Add(article);
-
                     }
                 };
                 return articles;
             });
-
         }
     }
 }

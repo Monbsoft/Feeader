@@ -6,13 +6,14 @@ using System.Windows.Input;
 
 namespace Monbsoft.Feeader.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class FeedListViewModel : BaseViewModel
     {
         private readonly FeedService _feedService;
         private List<FeedViewModel> _feeds;
+        private ArticleViewModel _selectedArticle;
         private FeedViewModel _selectedFeed;
 
-        public MainViewModel(FeedService feedService)
+        public FeedListViewModel(FeedService feedService)
         {
             _feedService = feedService;
         }
@@ -23,11 +24,19 @@ namespace Monbsoft.Feeader.ViewModels
             set { SetProperty(ref _feeds, value); }
         }
 
+        public ArticleViewModel SelectedArticle
+        {
+            get { return _selectedArticle; }
+            set { SetProperty(ref _selectedArticle, value); }
+        }
+
         public FeedViewModel SelectedFeed
         {
             get { return _selectedFeed; }
             set { SetProperty(ref _selectedFeed, value); }
         }
+
+        public ICommand SelectArticleCommand => new AsyncCommand<Article>(SelectArticleCommandExecute);
 
         public ICommand SelectFeedCommand => new AsyncCommand<FeedViewModel>(SelectFeedCommandExecute);
 
@@ -39,8 +48,15 @@ namespace Monbsoft.Feeader.ViewModels
 
         private async Task SelectFeedCommandExecute(FeedViewModel feed)
         {
+            SelectedArticle = null;
             SelectedFeed = feed;
             await SelectedFeed?.InitializeAsync();
+        }
+
+        private async Task SelectArticleCommandExecute(Article article)
+        {
+            SelectedArticle = new ArticleViewModel(article.Title, article.Link);
+            await SelectedArticle?.InitializeAsync();
         }
     }
 }
