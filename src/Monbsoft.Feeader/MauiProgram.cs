@@ -1,4 +1,6 @@
-﻿namespace Monbsoft.Feeader
+﻿using Monbsoft.Feeader.Extensions;
+
+namespace Monbsoft.Feeader
 {
     public static class MauiProgram
     {
@@ -7,6 +9,9 @@
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureEssentials()
+                .ConfigureServices()
+                .ConfigureViewModels()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
