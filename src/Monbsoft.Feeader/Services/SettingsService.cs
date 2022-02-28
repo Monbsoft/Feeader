@@ -1,11 +1,4 @@
-﻿using Monbsoft.Feeader.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monbsoft.Feeader.Services
+﻿namespace Monbsoft.Feeader.Services
 {
     public class SettingsService
     {
