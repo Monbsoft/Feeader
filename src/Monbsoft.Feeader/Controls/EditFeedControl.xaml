@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Monbsoft.Feeader.Controls.EditFeedControl">
+             x:Class="Monbsoft.Feeader.Controls.EditFeedControl"
+             x:Name="editFeedView">
     <ContentView.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -12,9 +13,9 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Entry Text="{Binding FeedUrl}"/>
+            <Entry Text="{Binding NewFeedUrl, Source={x:Reference editFeedView}}"/>
             <Button Text="Add"
-                    Command="{Binding AddCommand}"
+                    Command="{Binding AddCommand, Source={x:Reference editFeedView}}"
                     Grid.Column="1"/>
             <ListView Grid.ColumnSpan="2"
                       Grid.Row="1">

@@ -17,7 +17,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label Text="Feeds" />
-        <controls:EditFeedControl FeedUrl="{Binding NewFeedUrl}"
+        <controls:EditFeedControl NewFeedUrl="{Binding NewFeedUrl, Mode=TwoWay}"
                                   AddCommand="{Binding AddFeedCommand}"
                                   Grid.Column="1" />
     </Grid>

@@ -12,7 +12,7 @@ namespace Monbsoft.Feeader.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-        private readonly SettingsService _settingsService;
+        private readonly SettingsService _settingsService;       
         private string _newFeedUrl;
 
         public SettingsViewModel(SettingsService settingsService)
@@ -32,12 +32,12 @@ namespace Monbsoft.Feeader.ViewModels
 
         internal async Task InitializeAsync()
         {
-            var test = await _settingsService.GetFeedsAsync();
+            var test = await _settingsService.ReadFeedsAsync();
         }
 
-        public Task AddFeedCommandExecute()
+        public async Task AddFeedCommandExecute()
         {
-            return Task.CompletedTask;
+            await _settingsService.SaveAsync(NewFeedUrl);
         }
     }
 }

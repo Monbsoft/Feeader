@@ -27,7 +27,6 @@ namespace Monbsoft.Feeader.Services
         }
 
 
-
         public async Task<IEnumerable<Article>> GetArticlesAsync(Feed feed)
         {
             return await Task.Run(() =>

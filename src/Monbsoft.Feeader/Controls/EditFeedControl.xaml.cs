@@ -8,6 +8,8 @@ public partial class EditFeedControl : ContentView
 	public EditFeedControl()
 	{
 		InitializeComponent();
+
+		//BindingContext = this;
 	}
 
 	public static readonly BindableProperty AddCommandProperty =
@@ -17,24 +19,24 @@ public partial class EditFeedControl : ContentView
 			typeof(EditFeedControl),
 			null);
 
-	public static readonly BindableProperty FeedUrlProperty =
+	public static readonly BindableProperty NewFeedUrlProperty =
 		BindableProperty.Create(
-			nameof(FeedUrl),
+			nameof(NewFeedUrl),
 			typeof(string),
 			typeof(EditFeedControl),
 			string.Empty);
 
 
 	public ICommand AddCommand
-    {
-		get { return (ICommand)GetValue(AddCommandProperty); }
-		set { SetValue(AddCommandProperty, value); }
-    }
-
-	public string FeedUrl
 	{
-		get { return (string)GetValue(FeedUrlProperty); }
-		set { SetValue(FeedUrlProperty, value); }
+		get => (ICommand)GetValue(AddCommandProperty);
+		set => SetValue(AddCommandProperty, value);
+	}
+
+	public string NewFeedUrl
+	{
+		get { return (string)GetValue(NewFeedUrlProperty); }
+		set { SetValue(NewFeedUrlProperty, value); }
 
 	}
 }

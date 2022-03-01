@@ -9,13 +9,16 @@ namespace Monbsoft.Feeader.ViewModels
     public class FeedListViewModel : BaseViewModel
     {
         private readonly FeedService _feedService;
+        private readonly SettingsService _settingsService;
         private List<FeedViewModel> _feeds;
         private ArticleViewModel _selectedArticle;
         private FeedViewModel _selectedFeed;
 
-        public FeedListViewModel(FeedService feedService)
+        public FeedListViewModel(FeedService feedService, SettingsService settingsService)
         {
             _feedService = feedService;
+            _settingsService = settingsService;
+
         }
 
         public List<FeedViewModel> Feeds
@@ -43,6 +46,7 @@ namespace Monbsoft.Feeader.ViewModels
         public async Task InitializeAsync()
         {
             var feeds = await _feedService.GetAllFeeds();
+            var test = await _settingsService.ReadFeedsAsync();
             Feeds = feeds?.Select(f => new FeedViewModel(f, _feedService)).ToList();
         }
 

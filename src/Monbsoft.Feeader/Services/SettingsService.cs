@@ -11,7 +11,7 @@
         }
 
 
-        public async Task<List<string>> GetFeedsAsync()
+        public async Task<List<string>> ReadFeedsAsync()
         {
             if (!File.Exists(_localPath))
                 return new List<string>();
