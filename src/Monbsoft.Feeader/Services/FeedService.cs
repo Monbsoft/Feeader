@@ -14,16 +14,13 @@ namespace Monbsoft.Feeader.Services
             _localPath = Path.Combine(FileSystem.AppDataDirectory, localFileName);
         }
 
-        public Task<IEnumerable<Feed>> GetAllFeeds()
+        public Task<Feed> GetFeedDataAsync(string url)
         {
-            var feeds = new List<Feed>()
+            using (var reader = XmlReader.Create(url))
             {
-                new Feed("CNN", "http://rss.cnn.com/rss/cnn_topstories.rss"),
-                new Feed("New York Times", "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"),
-                new Feed("Huffington Post", "https://www.huffpost.com/section/front-page/feed?x=1"),
-                new Feed("Fox News", "https://moxie.foxnews.com/feedburner/latest.xml")
-            };
-            return Task.FromResult(feeds.AsEnumerable<Feed>());
+                var data = SyndicationFeed.Load(reader);
+                return Task.FromResult(new Feed(data.Title?.Text, url));
+            }
         }
 
 

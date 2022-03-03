@@ -45,8 +45,7 @@ namespace Monbsoft.Feeader.ViewModels
 
         public async Task InitializeAsync()
         {
-            var feeds = await _feedService.GetAllFeeds();
-            var test = await _settingsService.ReadFeedsAsync();
+            var feeds = await _settingsService.ReadFeedsAsync();
             Feeds = feeds?.Select(f => new FeedViewModel(f, _feedService)).ToList();
         }
 

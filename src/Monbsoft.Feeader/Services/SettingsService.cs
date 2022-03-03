@@ -1,4 +1,7 @@
-﻿namespace Monbsoft.Feeader.Services
+﻿using Monbsoft.Feeader.Models;
+using System.Text.Json;
+
+namespace Monbsoft.Feeader.Services
 {
     public class SettingsService
     {
@@ -11,17 +14,24 @@
         }
 
 
-        public async Task<List<string>> ReadFeedsAsync()
+        public async Task<List<Feed>> ReadFeedsAsync()
         {
             if (!File.Exists(_localPath))
-                return new List<string>();
-            var contents = await File.ReadAllTextAsync(_localPath);
-            return null;
+                return new List<Feed>();
+
+            using(var stream = File.OpenRead(_localPath))  
+            {
+                var feeds = await JsonSerializer.DeserializeAsync<List<Feed>>(stream);
+                return feeds;
+            }
         }
 
-        public Task SaveAsync(string feeds)
+        public async Task SaveAsync(List<Feed> feeds)
         {
-           return File.WriteAllTextAsync(_localPath, feeds);
+            using (var stream = File.OpenWrite(_localPath))
+            {
+               await JsonSerializer.SerializeAsync<List<Feed>>(stream, feeds);
+            }
         }
     }
 }

@@ -1,3 +1,5 @@
+using Monbsoft.Feeader.Models;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Monbsoft.Feeader.Controls;
@@ -26,12 +28,27 @@ public partial class EditFeedControl : ContentView
 			typeof(EditFeedControl),
 			string.Empty);
 
+	public static readonly BindableProperty FeedsProperty =
+		BindableProperty.Create(
+			nameof(Feeds),
+			typeof(ObservableCollection<Feed>),
+			typeof(EditFeedControl),
+			null);
+
 
 	public ICommand AddCommand
 	{
 		get => (ICommand)GetValue(AddCommandProperty);
 		set => SetValue(AddCommandProperty, value);
 	}
+
+
+	public ObservableCollection<Feed> Feeds
+    {
+		get { return (ObservableCollection<Feed>)GetValue(FeedsProperty); }
+		set { SetValue(FeedsProperty, value); }
+    }
+
 
 	public string NewFeedUrl
 	{
