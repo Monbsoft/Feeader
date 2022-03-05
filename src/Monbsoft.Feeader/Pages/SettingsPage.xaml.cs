@@ -6,16 +6,18 @@ public partial class SettingsPage : ContentPage
 {
 	public SettingsPage(SettingsViewModel viewModel)
 	{
-		InitializeComponent();
+		InitializeComponent();		
 		BindingContext = viewModel;
 	}
 
+
 	public SettingsViewModel ViewModel => BindingContext as SettingsViewModel;
+
+
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
 		await ViewModel.InitializeAsync();
-
 	}
 }

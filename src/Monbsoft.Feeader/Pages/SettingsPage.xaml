@@ -1,15 +1,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
+             xmlns:controls="clr-namespace:Monbsoft.Feeader.Controls"
+             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"             
              x:Class="Monbsoft.Feeader.Pages.SettingsPage"
-             Title="{x:Static res:StringResources.Settings}"
+             Title="{x:Static res:StringResources.settings}"
              BackgroundColor="White">
-    <Grid>
+    <Grid Padding="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Text="Feeds" />
-        <ListView Grid.Row="1"/>
+        <Label Text="{x:Static res:StringResources.feeds}" />
+        <controls:EditFeedControl AddCommand="{Binding EditFeedViewModel.AddFeedCommand}"
+                                  DeleteCommand="{Binding EditFeedViewModel.DeleteFeedCommand}"
+                                  Feeds="{Binding EditFeedViewModel.Feeds}"
+                                  FeedUrl="{Binding EditFeedViewModel.FeedUrl, Mode=TwoWay}"
+                                  Grid.Column="1" />
     </Grid>
 </ContentPage>

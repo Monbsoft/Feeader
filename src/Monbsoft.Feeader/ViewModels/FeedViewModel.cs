@@ -33,8 +33,7 @@ namespace Monbsoft.Feeader.ViewModels
                 IsBusy = true;
                 _articles.Clear();
                 var articles = await _feedService.GetArticlesAsync(_feed);
-                _feed.AddArticles(articles.OrderByDescending(a => a.Date));
-                foreach (var article in articles)
+                foreach (var article in articles.OrderByDescending(a => a.Date))
                 {
                     _articles.Add(article);
                 }                

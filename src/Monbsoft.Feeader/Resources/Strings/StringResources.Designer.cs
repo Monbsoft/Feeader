@@ -61,29 +61,56 @@ namespace Monbsoft.Feeader.Resources.Strings {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        internal static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        internal static string feed_name {
+            get {
+                return ResourceManager.GetString("feed_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Url.
+        /// </summary>
+        internal static string feed_url {
+            get {
+                return ResourceManager.GetString("feed_url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Feeds.
         /// </summary>
-        internal static string Feeds {
+        internal static string feeds {
             get {
-                return ResourceManager.GetString("Feeds", resourceCulture);
+                return ResourceManager.GetString("feeds", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à My feeds.
         /// </summary>
-        internal static string MyFeeds {
+        internal static string myFeeds {
             get {
-                return ResourceManager.GetString("MyFeeds", resourceCulture);
+                return ResourceManager.GetString("myFeeds", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Settings.
         /// </summary>
-        internal static string Settings {
+        internal static string settings {
             get {
-                return ResourceManager.GetString("Settings", resourceCulture);
+                return ResourceManager.GetString("settings", resourceCulture);
             }
         }
     }

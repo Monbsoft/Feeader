@@ -117,13 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Feeds" xml:space="preserve">
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="feeds" xml:space="preserve">
     <value>Feeds</value>
   </data>
-  <data name="MyFeeds" xml:space="preserve">
+  <data name="feed_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="feed_url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="myFeeds" xml:space="preserve">
     <value>My feeds</value>
   </data>
-  <data name="Settings" xml:space="preserve">
+  <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
 </root>

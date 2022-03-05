@@ -2,7 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Monbsoft.Feeader.ViewModels"
              xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
-             x:Class="Monbsoft.Feeader.Pages.FeedListPage"             
+             x:Class="Monbsoft.Feeader.Pages.FeedListPage"
+             Title="Feeader"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,7 +15,7 @@
             Margin="10,0"
             ItemsSource="{Binding Feeds}">
             <CollectionView.Header>
-                <Label Text="{x:Static res:StringResources.MyFeeds}"
+                <Label Text="{x:Static res:StringResources.myFeeds}"
                        Style="{StaticResource H5LabelStyle}"/>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
