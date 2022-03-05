@@ -8,8 +8,8 @@ namespace Monbsoft.Feeader.ViewModels
     {
         public ShellViewModel()
         {
-            Feeds = new AppSection() { Title = StringResources.Feeds };
-            Settings = new AppSection() { Title = StringResources.Settings };
+            Feeds = new AppSection() { Title = StringResources.feeds };
+            Settings = new AppSection() { Title = StringResources.settings };
         }
 
         public AppSection Feeds { get; set; }

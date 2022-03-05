@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:Monbsoft.Feeader.Resources.Strings"
+             xmlns:viewmodels="clr-namespace:Monbsoft.Feeader.ViewModels"
              x:Class="Monbsoft.Feeader.Controls.EditFeedControl"
              x:Name="editFeedView">
     <ContentView.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <Entry Text="{Binding NewFeedUrl, Source={x:Reference editFeedView}}"/>
+            <Entry Text="{Binding FeedUrl, Source={x:Reference editFeedView}}" />
             <Button Text="Add"
                     Command="{Binding AddCommand, Source={x:Reference editFeedView}}"
-                    Grid.Column="1"/>
-            <ListView Grid.ColumnSpan="2"
-                      Grid.Row="1"
-                      ItemsSource="{Binding Feeds, Source={x:Reference editFeedView}}">
-                
-            </ListView>
+                    Grid.Column="1" />
+            <CollectionView BackgroundColor="{AppThemeBinding Light={StaticResource Grey2}, Dark={StaticResource Grey8}}"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            ItemsSource="{Binding Feeds, Source={x:Reference editFeedView}}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     HorizontalItemSpacing="5"
+                                     VerticalItemSpacing="{OnIdiom Phone=4, Tablet=8, Desktop=8}" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Vertical">
+                                <Label Style="{StaticResource BodyXLLabelStyle}"
+                                       Text="{Binding Name}" />
+                                <Label Text="{Binding Link}" />
+                            </StackLayout>
+                            <Button Command="{Binding DeleteCommand}"
+                                    CommandParameter="{Binding}"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Text="{x:Static res:StringResources.delete}"
+                                    VerticalOptions="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentView.Content>
 </ContentView>

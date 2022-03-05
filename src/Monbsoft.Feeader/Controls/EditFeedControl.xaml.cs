@@ -21,9 +21,16 @@ public partial class EditFeedControl : ContentView
 			typeof(EditFeedControl),
 			null);
 
-	public static readonly BindableProperty NewFeedUrlProperty =
+	public static readonly BindableProperty DeleteCommandProperty =
+	BindableProperty.Create(
+		nameof(DeleteCommand),
+		typeof(ICommand),
+		typeof(EditFeedControl),
+		null);
+
+	public static readonly BindableProperty FeedUrlProperty =
 		BindableProperty.Create(
-			nameof(NewFeedUrl),
+			nameof(FeedUrl),
 			typeof(string),
 			typeof(EditFeedControl),
 			string.Empty);
@@ -42,6 +49,13 @@ public partial class EditFeedControl : ContentView
 		set => SetValue(AddCommandProperty, value);
 	}
 
+	public ICommand DeleteCommand
+	{
+		get => (ICommand)GetValue(DeleteCommandProperty);
+		set => SetValue(DeleteCommandProperty, value);
+	}
+
+
 
 	public ObservableCollection<Feed> Feeds
     {
@@ -50,10 +64,11 @@ public partial class EditFeedControl : ContentView
     }
 
 
-	public string NewFeedUrl
+	public string FeedUrl
 	{
-		get { return (string)GetValue(NewFeedUrlProperty); }
-		set { SetValue(NewFeedUrlProperty, value); }
+		get { return (string)GetValue(FeedUrlProperty); }
+		set { SetValue(FeedUrlProperty, value); }
 
 	}
+
 }

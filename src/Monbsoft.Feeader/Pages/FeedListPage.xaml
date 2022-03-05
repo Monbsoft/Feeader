@@ -15,7 +15,7 @@
             Margin="10,0"
             ItemsSource="{Binding Feeds}">
             <CollectionView.Header>
-                <Label Text="{x:Static res:StringResources.MyFeeds}"
+                <Label Text="{x:Static res:StringResources.myFeeds}"
                        Style="{StaticResource H5LabelStyle}"/>
             </CollectionView.Header>
             <CollectionView.ItemTemplate>

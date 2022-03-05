@@ -15,46 +15,32 @@ namespace Monbsoft.Feeader.ViewModels
     public class SettingsViewModel : BaseViewModel
     {
         private readonly FeedService _feedService; 
-        private readonly SettingsService _settingsService;       
-        private string _newFeedUrl;
-        private ObservableCollection<Feed> _feeds;
+        private readonly SettingsService _settingsService;    
+        private readonly EditFeedViewModel _editFeedViewModel;  
 
         public SettingsViewModel(FeedService feedService, SettingsService settingsService)
         {
-            _feeds = new ObservableCollection<Feed>();
             _feedService = feedService;
-            _settingsService = settingsService;
+            _settingsService = settingsService;         
+            _editFeedViewModel = new EditFeedViewModel(feedService, settingsService);
         }
 
         public static string AppVersion { get => AppInfo.VersionString; }
 
-        public ICommand AddFeedCommand => new AsyncCommand(AddFeedCommandExecute);
-
-        public ObservableCollection<Feed> Feeds
+        public EditFeedViewModel EditFeedViewModel
         {
-            get { return _feeds; }
-            set { SetProperty(ref _feeds, value); }
+            get => _editFeedViewModel;
         }
 
-        public string NewFeedUrl
-        {
-            get { return _newFeedUrl; }   
-            set { SetProperty(ref _newFeedUrl, value); }  
-        }
 
         internal async Task InitializeAsync()
         {
-            var feeds = await _settingsService.ReadFeedsAsync();
-            feeds.ForEach(f => Feeds.Add(f));
+            await _editFeedViewModel.InitializeAsync();
            
         }
 
-        public async Task AddFeedCommandExecute()
-        {
-            var newFeed = await _feedService.GetFeedDataAsync(NewFeedUrl);
-            Feeds.Add(newFeed);
-            await _settingsService.SaveAsync(Feeds.ToList());
 
-        }
+
+
     }
 }
