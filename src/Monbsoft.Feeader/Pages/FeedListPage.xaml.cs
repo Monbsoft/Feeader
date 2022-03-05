@@ -4,8 +4,6 @@ namespace Monbsoft.Feeader.Pages;
 
 public partial class FeedListPage : ContentPage
 {
-    private FeedListViewModel _viewModel => BindingContext as FeedListViewModel;
-
     public FeedListPage(FeedListViewModel viewModel)
     {
         InitializeComponent();
@@ -13,11 +11,12 @@ public partial class FeedListPage : ContentPage
         BindingContext = viewModel;
     }
 
+    public FeedListViewModel ViewModel => BindingContext as FeedListViewModel;
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _viewModel.InitializeAsync();
+        await ViewModel.InitializeAsync();
     }
 
 }

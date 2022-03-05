@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         <Label Text="{x:Static res:StringResources.feeds}" />
         <controls:EditFeedControl AddCommand="{Binding EditFeedViewModel.AddFeedCommand}"
+                                  DeleteCommand="{Binding EditFeedViewModel.DeleteFeedCommand}"
                                   Feeds="{Binding EditFeedViewModel.Feeds}"
                                   FeedUrl="{Binding EditFeedViewModel.FeedUrl, Mode=TwoWay}"
                                   Grid.Column="1" />

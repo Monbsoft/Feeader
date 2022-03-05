@@ -55,9 +55,7 @@ namespace Monbsoft.Feeader.ViewModels
 
         public async Task DeleteFeedCommandExecute(Feed feed)
         {
-            var newFeed = await _feedService.GetFeedDataAsync(FeedUrl);
-            newFeed.CreationDate = DateTime.Now;
-            Feeds.Add(newFeed);
+            Feeds.Remove(feed);
             await _settingsService.SaveAsync(Feeds.ToList());
         }
 

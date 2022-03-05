@@ -41,7 +41,7 @@
                                        Text="{Binding Name}" />
                                 <Label Text="{Binding Link}" />
                             </StackLayout>
-                            <Button Command="{Binding DeleteCommand}"
+                            <Button Command="{Binding DeleteCommand, Source={x:Reference editFeedView}}"
                                     CommandParameter="{Binding}"
                                     Grid.Column="1"
                                     HorizontalOptions="End"
