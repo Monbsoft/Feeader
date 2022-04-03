@@ -4,44 +4,43 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 trigger:
-- dev
-- features/*
-
-pool:
-  vmImage: 'windows-latest'
+  branches:
+    include:
+      - dev
+      - features/*
 
 variables:
-  solution: '**/*.sln'
+  solution: 'Feeader.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  NET_VERSION: '6.0.x'
 
-steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '6.x'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'custom'
-    custom: 'workload'
-    arguments: 'install maui'
-
-- task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: '>= 6.0.0'
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+jobs:
+- job: build_windows
+  displayName: Build Windows
+  pool:
+    vmImage: 'windows-2022'
+  steps:
+    - task: UseDotNet@2
+      displayName: 'Install .NET SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '$(NET_VERSION)'
+    - task: DotNetCoreCLI@2
+      displayName: 'Install .Net MAUI Workload'
+      inputs:
+        command: 'custom'
+        custom: 'workload'
+        arguments: 'install maui'
+    - task: VSBuild@1
+      displayName: 'Build Feeader'
+      inputs:
+        solution: '$(solution)'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+        restoreNugetPackages: true
+    - task: VSTest@2
+      displayName: 'Run Unit Tests'
+      inputs:
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
