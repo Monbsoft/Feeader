@@ -44,3 +44,9 @@ jobs:
       inputs:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Application'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'FeeaderArtifact'
+        publishLocation: 'Container'
