@@ -27,7 +27,7 @@ jobs:
         packageType: 'sdk'
         version: '$(NET_VERSION)'
     - task: DotNetCoreCLI@2
-      displayName: 'Install .Net MAUI Workload'
+      displayName: 'Install .NET MAUI Workload'
       inputs:
         command: 'custom'
         custom: 'workload'
@@ -38,7 +38,7 @@ jobs:
         solution: '$(solution)'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        restoreNugetPackages: true
+        msbuildArgs: '/restore'
     - task: VSTest@2
       displayName: 'Run Unit Tests'
       inputs:
