@@ -10,9 +10,7 @@ public partial class EditFeedControl : ContentView
 	public EditFeedControl()
 	{
 		InitializeComponent();
-
-		//BindingContext = this;
-	}
+    }
 
 	public static readonly BindableProperty AddCommandProperty =
 		BindableProperty.Create(

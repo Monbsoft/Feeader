@@ -53,13 +53,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Views\**" />
+	  <EmbeddedResource Remove="Views\**" />
+	  <MauiCss Remove="Views\**" />
+	  <MauiXaml Remove="Views\**" />
+	  <None Remove="Views\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	  <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Platforms\Style\" />
-	  <Folder Include="Views\" />
 	</ItemGroup>
 
 	<ItemGroup>
