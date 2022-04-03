@@ -1,4 +1,5 @@
 ﻿using Monbsoft.Feeader.Extensions;
+using Monbsoft.Feeader.Pages;
 
 namespace Monbsoft.Feeader
 {
@@ -12,6 +13,7 @@ namespace Monbsoft.Feeader
                 .ConfigureEssentials()
                 .ConfigureServices()
                 .ConfigureViewModels()
+                .ConfigurePages()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
