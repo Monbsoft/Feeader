@@ -14,7 +14,7 @@ public abstract class EntityBase
 
     [NotMapped]
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents;
-    public Guid Id { get; set; }
+    public Guid Id { get; protected set; }
 
     public override bool Equals(object? obj)
     {

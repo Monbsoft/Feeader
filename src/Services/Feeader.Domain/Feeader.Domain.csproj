@@ -7,4 +7,8 @@
     <RootNamespace>Monbsoft.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Feeader.SharedKernel\Feeader.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>
