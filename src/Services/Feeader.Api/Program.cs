@@ -1,8 +1,10 @@
+using Monbsoft.Feeader.Application;
 using Monbsoft.Feeader.Infrastructure;
 using Monbsoft.Feeader.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 // Add services to the container.
