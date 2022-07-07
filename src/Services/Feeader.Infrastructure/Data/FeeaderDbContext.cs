@@ -14,13 +14,14 @@ namespace Monbsoft.Feeader.Infrastructure.Data
         public DbSet<Feed> Feeds => Set<Feed>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
             //Feed
             modelBuilder.Entity<Feed>()
                 .Property(f => f.Created)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Feed>()
                 .Property(b => b.Updated)
+                .HasDefaultValueSql("getdate()")
                 .ValueGeneratedOnAddOrUpdate();
 
             base.OnModelCreating(modelBuilder);

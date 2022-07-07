@@ -12,7 +12,7 @@
 
 
     ```
-    dotnet ef migrations add InitialCreate --context feeaderdbcontext -p ../ Feeader.Infrastructure/Feeader.Infrastructure.csproj -s Feeader.Api.csproj -o Data/Migrations
+    dotnet ef migrations add InitialCreate --context feeaderdbcontext -p ../Feeader.Infrastructure/Feeader.Infrastructure.csproj -s Feeader.Api.csproj -o Data/Migrations
     ```    
 
 * Update SQL Server database:

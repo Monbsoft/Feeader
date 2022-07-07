@@ -5,18 +5,15 @@ namespace Monbsoft.Feeader.Domain
     public class Feed : EntityBase
     {
         public Feed() {}
-        public Feed(Guid id, string name, string  url, DateTime created, DateTime updated)
+        public Feed(string name, string  url)
         {
-            Id = id;
             Name = name;
             Url = url;
-            Created = created;
-            Updated = updated;
         }
 
         public string Name { get; private set; }
         public string Url { get; private set; }
-        public DateTime Created { get; private set; }
-        public DateTime Updated { get; private set; }
+        public DateTime Created { get; private set; } = DateTime.Now;
+        public DateTime Updated { get; private set; } = DateTime.Now;
     }
 }
