@@ -14,7 +14,8 @@ namespace Monbsoft.Feeader.Infrastructure.Data
         public DbSet<Feed> Feeds => Set<Feed>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {            
+        {
+            modelBuilder.Entity<Feed>().HasData(ContextSeed.Feeds);
             //Feed
             modelBuilder.Entity<Feed>()
                 .Property(f => f.Created)

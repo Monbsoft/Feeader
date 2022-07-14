@@ -8,15 +8,18 @@ namespace Monbsoft.Feeader.Application.UseCases.GetFeed
     public class GetFeedQueryHandler : IRequestHandler<GetFeedRequest, Feed?>
     {
         private readonly IApplicationDbContext _dbContext;
+        private readonly IFeedClient _feedClient;
 
-        public GetFeedQueryHandler(IApplicationDbContext dbContext)
+        public GetFeedQueryHandler(IApplicationDbContext dbContext, IFeedClient feedClient)
         {
             _dbContext = dbContext;
+            _feedClient = feedClient;
         }
 
-        public Task<Feed?> Handle(GetFeedRequest request, CancellationToken cancellationToken)
+        public async Task<Feed?> Handle(GetFeedRequest request, CancellationToken cancellationToken)
         {
-            var feed = _dbContext.Feeds.FirstOrDefaultAsync(feed => feed.Id == request.Id);
+            var feed = await _dbContext.Feeds.FirstOrDefaultAsync(feed => feed.Id == request.Id);
+            var test = await _feedClient.GetChannelAsync(feed!, cancellationToken);
             return feed;
         }
     }

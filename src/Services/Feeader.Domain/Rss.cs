@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Monbsoft.Feeader.Infrastructure.Http.Feeds;
+namespace Monbsoft.Feeader.Domain;
 
 // dotnet-podcasts
 // Copy https://github.com/microsoft/dotnet-podcasts/blob/main/src/Services/Podcasts/Podcast.Infrastructure/Http/Feeds/Rss.cs

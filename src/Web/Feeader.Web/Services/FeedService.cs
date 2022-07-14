@@ -18,6 +18,9 @@ public class FeedService
 
     }
 
+    public Task<Feed?> GetAsync(Guid id, CancellationToken cancellationToken) =>
+        _httpClient.GetFromJsonAsync<Feed?>($"feeds/{id}", cancellationToken);
+
     public Task<Feed[]?> ListAsync(CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Feed[]>("feeds", cancellationToken);
 

@@ -1,0 +1,33 @@
+﻿@page "/feeds/{id}"
+@implements IDisposable
+@inject FeedService FeedService
+@inject ILogger<FeedPage> Logger
+
+<MudText Typo="Typo.h3">Feed @_feed?.Name</MudText>
+@if(_feed == null)
+{
+
+    <Loading/>
+}
+else
+{
+    <MudText Typo="Typo.overline">@_feed.Updated.Humanize()</MudText>
+}
+
+@code {
+    private CancellationTokenSource _cts = new();
+    private Models.Feed? _feed;
+    [Parameter]
+    public Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _feed = await FeedService.GetAsync(Id, _cts.Token);
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+}
