@@ -4,13 +4,13 @@ namespace Monbsoft.Feeader.Application.UseCases.CreateFeed
 {
     public class CreateFeedCommand : IRequest<Guid>
     {
-        public CreateFeedCommand(string name, string link)
+        public CreateFeedCommand(string name, string url)
         {
             Name = name;
-            Link = link;
+            Url = url;
         }
 
         public string Name { get; }
-        public string Link { get; }
+        public string Url { get; }
     }
 }

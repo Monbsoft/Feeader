@@ -13,18 +13,21 @@ namespace Monbsoft.Feeader.Api.Controllers
     public class FeedsController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<FeedsController> _logger;
 
-        public FeedsController(IMediator mediator)
+        public FeedsController(IMediator mediator, ILogger<FeedsController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Guid>> CreateAsync(string name, string link, CancellationToken cancellationToken)
+        public async Task<ActionResult<Guid>> CreateAsync(CreateFeedCommand request, CancellationToken cancellationToken)
         {
-            var id = await _mediator.Send(new CreateFeedCommand(name, link));
+            var id = await _mediator.Send(request);
+            _logger.LogInformation($"Feed {id} created");
             return Ok(id);
         }
 

@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "Feeader.Web": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "applicationUrl": "https://localhost:7173;http://localhost:5241",
+      "dotnetRunMessages": true
+    },
+    "Profil 1": {
+      "commandName": "Project"
+    }
+  }
+}

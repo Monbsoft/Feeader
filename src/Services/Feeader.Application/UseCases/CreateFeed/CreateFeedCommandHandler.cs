@@ -20,7 +20,7 @@ namespace Monbsoft.Feeader.Application.UseCases.CreateFeed
 
         public async Task<Guid> Handle(CreateFeedCommand request, CancellationToken cancellationToken)
         {
-            var feed = new Feed(request.Name, request.Link);
+            var feed = new Feed(request.Name, request.Url);
             await _dbContext.Feeds.AddAsync(feed, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return feed.Id;
