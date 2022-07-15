@@ -1,0 +1,57 @@
+﻿@page "/feeds/create"
+@using System.ComponentModel.DataAnnotations
+@implements IDisposable
+@inject FeedService FeedService
+@inject NavigationManager NavigationManager
+@inject ILogger<CreateFeedPage> Logger
+
+
+<EditForm Model="@_createModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Create a feed</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField Label="Url" @bind-Value="_createModel.Url" For="@(() => _createModel.Url)" />
+                    <MudTextField Label="Name" Class="mt-3" @bind-Value="_createModel.Name" For="@(() => _createModel.Name)" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Create</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+
+@code {
+    private CreateModel _createModel = new();
+    private CancellationTokenSource _cts = new();
+
+    private async Task HandleValidSubmit()
+    {
+
+        await FeedService.CreateAsync(new CreateFeed(_createModel.Name!, _createModel.Url!), _cts.Token);
+        NavigationManager.NavigateTo("/feeds");
+        Logger.LogInformation("Feed created");
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+
+    private record CreateModel()
+    {
+        [Required]
+        public string? Url { get; set; }
+        [Required]
+        public string? Name { get; set; }
+    }
+}

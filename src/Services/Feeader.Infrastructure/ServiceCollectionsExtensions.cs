@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Monbsoft.Feeader.Application.Interfaces;
 using Monbsoft.Feeader.Infrastructure.Data;
+using Monbsoft.Feeader.Infrastructure.Http.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;

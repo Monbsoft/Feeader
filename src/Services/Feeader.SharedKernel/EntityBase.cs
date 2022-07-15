@@ -12,6 +12,7 @@ public abstract class EntityBase
         _domainEvents = new List<IDomainEvent>();
     }
 
+
     [NotMapped]
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents;
     public Guid Id { get; protected set; }
