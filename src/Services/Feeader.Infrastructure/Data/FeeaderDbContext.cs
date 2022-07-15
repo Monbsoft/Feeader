@@ -11,6 +11,7 @@ namespace Monbsoft.Feeader.Infrastructure.Data
         {
         }
 
+        public DbSet<Article> Articles => Set<Article>();
         public DbSet<Feed> Feeds => Set<Feed>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
