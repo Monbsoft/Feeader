@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Monbsoft.Feeader.Application.UseCases.GetFeed
 {
-    public class GetFeedRequest : IRequest<Feed>
+    public class GetFeedQuery : IRequest<Feed>
     {
-        public GetFeedRequest(Guid id)
+        public GetFeedQuery(Guid id)
         {
             Id = id;
         }

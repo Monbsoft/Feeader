@@ -4,13 +4,6 @@ namespace Monbsoft.Feeader.Domain
 {
     public class Feed : EntityBase
     {
-        public Feed() {}
-        public Feed(string name, string  url)
-        {
-            Name = name;
-            Url = url;
-        }
-
         public Feed(Guid id, string name, string url)
         {
             Id = id;

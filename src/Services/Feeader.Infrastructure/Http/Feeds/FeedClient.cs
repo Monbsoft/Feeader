@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Monbsoft.Feeader.Application.Interfaces;
 using Monbsoft.Feeader.Domain;
 using System.Xml.Serialization;
@@ -19,12 +18,12 @@ namespace Monbsoft.Feeader.Infrastructure.Http.Feeds
             _logger = logger;
         }
 
-        public async Task<Rss> GetChannelAsync(Feed feed, CancellationToken cancellationToken)
+        public async Task<Feed> GetFeedAsync(Feed feed, CancellationToken cancellationToken)
         {
             await using var feedContent = await _httpClient.GetStreamAsync(feed.Url, cancellationToken);
             var rss = (Rss)XmlSerializer.Deserialize(feedContent)!;
-
-            return rss;
+            var current = Mapper.Map(rss);
+            return current;
         }
     }
 }

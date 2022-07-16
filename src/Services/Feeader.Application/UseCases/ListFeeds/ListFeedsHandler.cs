@@ -4,16 +4,16 @@ using Monbsoft.Feeader.Domain;
 
 namespace Monbsoft.Feeader.Application.UseCases.ListFeeds
 {
-    public class ListFeedsQueryHandler : IStreamRequestHandler<ListFeedsRequest, Feed>
+    public class ListFeedsHandler : IStreamRequestHandler<ListFeedsQuery, Feed>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public ListFeedsQueryHandler(IApplicationDbContext dbContext)
+        public ListFeedsHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IAsyncEnumerable<Feed> Handle(ListFeedsRequest request, CancellationToken cancellationToken)
+        public IAsyncEnumerable<Feed> Handle(ListFeedsQuery request, CancellationToken cancellationToken)
         {
             var feeds = _dbContext.Feeds.AsAsyncEnumerable();
             return feeds;

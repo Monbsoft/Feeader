@@ -13,7 +13,7 @@ public static class ServiceCollectionsExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddMediatR(typeof(ListFeedsQueryHandler));
+        serviceCollection.AddMediatR(typeof(ListFeedsHandler));
         return serviceCollection;
     }
 }

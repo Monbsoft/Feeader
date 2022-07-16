@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Monbsoft.Feeader.Application.UseCases.CreateFeed
 {
-    public class CreateFeedCommandHandler : IRequestHandler<CreateFeedCommand, Guid>
+    public class CreateFeedHandler : IRequestHandler<CreateFeedCommand, Guid>
     {
         private readonly IApplicationDbContext _dbContext;
 
-        public CreateFeedCommandHandler(IApplicationDbContext dbContext)
+        public CreateFeedHandler(IApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
