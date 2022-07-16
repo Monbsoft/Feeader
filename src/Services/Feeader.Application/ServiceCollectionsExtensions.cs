@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Monbsoft.Feeader.Application.UseCases.ListFeeds;
+using Monbsoft.Feeader.Application.UseCases.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;

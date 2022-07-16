@@ -36,7 +36,7 @@
     private async Task HandleValidSubmit()
     {
 
-        await FeedService.CreateAsync(new CreateFeed(_createModel.Name!, _createModel.Url!), _cts.Token);
+        await FeedService.CreateFeedAsync(new CreateFeed(_createModel.Name!, _createModel.Url!), _cts.Token);
         NavigationManager.NavigateTo("/feeds");
         Logger.LogInformation("Feed created");
     }

@@ -11,7 +11,7 @@ internal static class Mapper
 {
     internal static Feed Map(Rss rss)
     {
-        var imageUrl = (rss.Channel.Image?.Url ?? rss.Channel.Image2?.Href) ?? throw new ArgumentNullException(nameof(Image.Url));
+        //var imageUrl = (rss.Channel.Image?.Url ?? rss.Channel.Image2?.Href) ?? throw new ArgumentNullException(nameof(Image.Url));
         var link = rss.Channel.Link?.Href ?? rss.Channel.Link2 ?? throw new ArgumentNullException(nameof(Link.Href));
         var articles = rss.Channel.Item.Select(Map).ToList();
 
@@ -27,7 +27,7 @@ internal static class Mapper
         var url = item.Link ?? item.Enclosure?.Url ?? throw new ArgumentNullException(nameof(Item.Link));
         var pubDate = RssHelper.ConvertDateTime(item.PubDate).GetValueOrDefault();
 
-        var article = new Article(Guid.NewGuid(), pubDate, description, url);
+        var article = new Article(Guid.Empty, pubDate, description, url);
         return article;
 
     }

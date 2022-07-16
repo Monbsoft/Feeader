@@ -5,6 +5,7 @@ namespace Monbsoft.Feeader.Application.Interfaces
 {
     public interface IApplicationDbContext
     {
+        DbSet<Article> Articles { get; }
         DbSet<Feed> Feeds { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

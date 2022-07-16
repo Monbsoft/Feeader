@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Monbsoft.Feeader.Application.UseCases.UpdateFeed;
+using Monbsoft.Feeader.Application.UseCases.Feeds;
 
 namespace Monbsoft.Feeader.Api.Workers
 {

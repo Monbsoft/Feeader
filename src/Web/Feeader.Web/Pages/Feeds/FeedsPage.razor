@@ -39,7 +39,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _feeds = await FeedService.ListAsync(_cts.Token);
+        _feeds = await FeedService.ListFeedsAsync(_cts.Token);
         Logger.LogInformation("{Count} feeds listed", _feeds?.Length);
     }
 

@@ -22,7 +22,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _feed = await FeedService.GetAsync(Id, _cts.Token);
+        _feed = await FeedService.GetFeedAsync(Id, _cts.Token);
     }
 
     public void Dispose()
