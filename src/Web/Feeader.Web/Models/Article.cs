@@ -1,4 +1,4 @@
 ﻿namespace Feeader.Web.Models
 {
-    public record Article(Guid Id, DateTime date, string Description, string Url);
+    public record Article(Guid Id, string Title, DateTime Date, string Description, string Url);
 }

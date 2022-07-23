@@ -27,7 +27,9 @@ public class GetFeedHandler : IRequestHandler<GetFeedQuery, Feed?>
 
     public async Task<Feed?> Handle(GetFeedQuery request, CancellationToken cancellationToken)
     {
-        var feed = await _dbContext.Feeds.FirstOrDefaultAsync(feed => feed.Id == request.Id);
+        var feed = await _dbContext.Feeds
+            .Include(f => f.Articles)
+            .FirstOrDefaultAsync(feed => feed.Id == request.Id);
         return feed;
     }
 }

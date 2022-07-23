@@ -1,4 +1,4 @@
-﻿@page "/feeds/{id}"
+﻿@page "/feeds/{id:guid}"
 @implements IDisposable
 @inject FeedService FeedService
 @inject ILogger<FeedPage> Logger
@@ -12,17 +12,34 @@
 else
 {
     <MudText Typo="Typo.overline">@_feed.Updated.Humanize()</MudText>
+    <MudList>
+    @foreach(var article in _feed.Articles)
+    {
+        <MudListItem>
+        <MudCard>
+            <MudCardContent>
+                <MudText Typo="Typo.h5">@article.Title</MudText>
+                <MudText Typo="Typo.body2">@article.Description</MudText>
+            </MudCardContent>
+        </MudCard>
+        </MudListItem>
+
+    }
+    </MudList>
+
 }
 
 @code {
     private CancellationTokenSource _cts = new();
     private Models.Feed? _feed;
+
     [Parameter]
     public Guid Id { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         _feed = await FeedService.GetFeedAsync(Id, _cts.Token);
+
     }
 
     public void Dispose()

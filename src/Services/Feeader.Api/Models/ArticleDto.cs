@@ -7,12 +7,14 @@ namespace Monbsoft.Feeader.Api.Models
         public ArticleDto(Article article)
         {
             Id = article.Id;
+            Title = article.Title;
             Description = article.Description;
             Date = article.Date;
             Url = article.Url;
         }
 
         public Guid Id { get; }
+        public string Title { get; }
         public string Description { get; }
         public DateTime Date { get; }
         public string Url { get; }
