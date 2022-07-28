@@ -28,7 +28,7 @@ public class GetFeedHandler : IRequestHandler<GetFeedQuery, Feed?>
     public async Task<Feed?> Handle(GetFeedQuery request, CancellationToken cancellationToken)
     {
         var feed = await _dbContext.Feeds
-            .Include(f => f.Articles)
+            .Include(f => f.Articles.OrderByDescending(a => a.Date))
             .FirstOrDefaultAsync(feed => feed.Id == request.Id);
         return feed;
     }

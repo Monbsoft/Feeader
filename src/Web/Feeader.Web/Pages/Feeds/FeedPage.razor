@@ -19,7 +19,8 @@ else
         <MudCard>
             <MudCardContent>
                 <MudText Typo="Typo.h5">@article.Title</MudText>
-                <MudText Typo="Typo.body2">@article.Description</MudText>
+                <MudText Typo="Typo.body2">@article.Date.Humanize()</MudText>
+                <MudText Typo="Typo.body1">@article.Description</MudText>
             </MudCardContent>
         </MudCard>
         </MudListItem>
