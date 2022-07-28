@@ -4,6 +4,6 @@ namespace Monbsoft.Feeader.Application.Interfaces
 {
     public interface IFeedClient
     {
-        Task<Rss> GetChannelAsync(Feed feed, CancellationToken cancellationToken);
+        Task<Feed> GetFeedAsync(Feed feed, CancellationToken cancellationToken);
     }
 }

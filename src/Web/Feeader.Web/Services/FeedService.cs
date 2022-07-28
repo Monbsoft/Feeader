@@ -12,16 +12,20 @@ public class FeedService
         _httpClient = httpClient;
     }
 
-    public async Task CreateAsync(CreateFeed request, CancellationToken cancellationToken)
-    {               
-        var response  = await _httpClient.PostAsJsonAsync("feeds", request, cancellationToken);
+    public async Task CreateFeedAsync(CreateFeed request, CancellationToken cancellationToken)
+    {
+        _ = await _httpClient.PostAsJsonAsync("feeds", request, cancellationToken);
 
     }
 
-    public Task<Feed?> GetAsync(Guid id, CancellationToken cancellationToken) =>
+    public Task<Feed?> GetFeedAsync(Guid id, CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Feed?>($"feeds/{id}", cancellationToken);
 
-    public Task<Feed[]?> ListAsync(CancellationToken cancellationToken) =>
+    public Task<Feed[]?> ListFeedsAsync(CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Feed[]>("feeds", cancellationToken);
 
+    public Task<Article[]?> ListArticlesAsync(Guid feedId, CancellationToken cancellationToken)
+    {
+        return _httpClient.GetFromJsonAsync<Article[]>($"articles?feedId={feedId}", cancellationToken);
+    }
 }

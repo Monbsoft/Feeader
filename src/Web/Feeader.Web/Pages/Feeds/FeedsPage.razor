@@ -24,7 +24,7 @@ else
             <MudTh><MudTableSortLabel SortBy="new Func<Feed, object>(x=>x.Updated)">Updated</MudTableSortLabel></MudTh>
         </HeaderContent>
         <RowTemplate>
-            <MudTd DataLabel="Name">@context.Name</MudTd>
+            <MudTd DataLabel="Name"><MudLink Href="@($"/feeds/{context.Id}")">@context.Name</MudLink></MudTd>
             <MudTd DataLabel="Updated">@context.Updated.Humanize()</MudTd>
         </RowTemplate>
     <PagerContent>
@@ -39,7 +39,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _feeds = await FeedService.ListAsync(_cts.Token);
+        _feeds = await FeedService.ListFeedsAsync(_cts.Token);
         Logger.LogInformation("{Count} feeds listed", _feeds?.Length);
     }
 

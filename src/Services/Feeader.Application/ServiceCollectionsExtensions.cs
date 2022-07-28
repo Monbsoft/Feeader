@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Monbsoft.Feeader.Application.UseCases.ListFeeds;
+using Monbsoft.Feeader.Application.UseCases.Feeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ public static class ServiceCollectionsExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddMediatR(typeof(ListFeedsQueryHandler));
+        serviceCollection.AddMediatR(typeof(ListFeedsHandler));
         return serviceCollection;
     }
 }

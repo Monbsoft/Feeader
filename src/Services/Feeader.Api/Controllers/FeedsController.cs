@@ -1,10 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Monbsoft.Feeader.Api.Models;
-using Monbsoft.Feeader.Application.UseCases.CreateFeed;
-using Monbsoft.Feeader.Application.UseCases.GetFeed;
-using Monbsoft.Feeader.Application.UseCases.ListFeeds;
-using Monbsoft.Feeader.Domain;
+using Monbsoft.Feeader.Application.UseCases.Feeds;
 
 namespace Monbsoft.Feeader.Api.Controllers
 {
@@ -36,18 +33,15 @@ namespace Monbsoft.Feeader.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<FeedDto>> GetAsync(Guid id, CancellationToken cancellationToken)
         {
-            var feed = await _mediator.Send(new GetFeedRequest(id), cancellationToken);
+            var feed = await _mediator.Send(new GetFeedQuery(id), cancellationToken);
             return feed == null ? NotFound() : Ok(new FeedDto(feed));
         }
 
         [HttpGet]
-        public async IAsyncEnumerable<FeedDto> ListAsync(int limit, CancellationToken cancellationToken)
+        public async Task<IEnumerable<FeedDto>> ListAsync(int limit, CancellationToken cancellationToken)
         {
-            var feeds = _mediator.CreateStream(new ListFeedsRequest(), cancellationToken);
-            await foreach(var feed in feeds)
-            {
-                yield return new FeedDto(feed);
-            }
+            var feeds = await _mediator.Send(new ListFeedsQuery(), cancellationToken);
+            return feeds.Select(f => new FeedDto(f));
         }
     }
 }
