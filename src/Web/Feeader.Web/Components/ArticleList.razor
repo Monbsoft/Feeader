@@ -1,0 +1,24 @@
+﻿ <MudList Clickable="true">
+@foreach(var article in Articles)
+{
+    <MudListItem Href="@article.Url" Target="_blank">
+        <MudCard>
+                <MudCardMedia Image="@article.Picture" Height="200" />
+            <MudCardContent>
+                <MudText Typo="Typo.h5">@article.Title</MudText>
+                <MudText Typo="Typo.body2">@article.Date.Humanize()</MudText>
+                <MudText Typo="Typo.body1">@article.Description</MudText>
+            </MudCardContent>
+        </MudCard>
+        </MudListItem>
+    }
+    </MudList>
+
+
+
+@code {
+
+    [Parameter]
+    public IReadOnlyCollection<Article> Articles { get; set; }
+
+}
