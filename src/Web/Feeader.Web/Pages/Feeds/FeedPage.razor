@@ -12,21 +12,7 @@
 else
 {
     <MudText Typo="Typo.overline">@_feed.Updated.Humanize()</MudText>
-    <MudList>
-    @foreach(var article in _feed.Articles)
-    {
-        <MudListItem>
-        <MudCard>
-            <MudCardContent>
-                <MudText Typo="Typo.h5">@article.Title</MudText>
-                <MudText Typo="Typo.body2">@article.Date.Humanize()</MudText>
-                <MudText Typo="Typo.body1">@article.Description</MudText>
-            </MudCardContent>
-        </MudCard>
-        </MudListItem>
-
-    }
-    </MudList>
+    <ArticleList Articles="@_feed.Articles"/>
 
 }
 
@@ -40,7 +26,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         _feed = await FeedService.GetFeedAsync(Id, _cts.Token);
-
+        Logger.LogInformation($"{_feed?.Articles?.Count} articles found");
     }
 
     public void Dispose()

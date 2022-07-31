@@ -1,13 +1,36 @@
 ﻿@page "/"
+@implements IDisposable
+@inject FeedService FeedService
+@inject ILogger<Index> Logger
 
 <PageTitle>Index</PageTitle>
+@if(_articles == null)
+{
+    <Loading/>
+}
+else 
+{
+    <ArticleList Articles="@_articles"/>
+}
 
-<h1>Hello, world!</h1>
+@code {
+    private CancellationTokenSource _cts = new();
+    private List<Article>? _articles;
 
-<div class="alert alert-warning" role="alert">
-    Before authentication will function correctly, you must configure your provider details in <code>Program.cs</code>
-</div>
+    [Parameter]
+    public Guid Id { get; set; }
 
-Welcome to your new app.
+    protected override async Task OnInitializedAsync()
+    {
+        var articles = await FeedService.ListArticlesAsync(100, _cts.Token);
+        _articles = articles.ToList();
+        Logger.LogInformation($"{_articles.Count} articles found");
+    }
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+}
+

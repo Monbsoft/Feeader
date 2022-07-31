@@ -27,8 +27,9 @@ internal static class Mapper
         var description = item.Summary ?? item.Description ?? String.Empty;
         var url = item.Link ?? item.Enclosure?.Url ?? throw new ArgumentNullException(nameof(Item.Link));
         var pubDate = RssHelper.ConvertDateTime(item.PubDate).GetValueOrDefault();
+        var picture = item.Enclosure?.Url ?? String.Empty;
 
-        var article = new Article(Guid.Empty, title, pubDate, description, url); ;
+        var article = new Article(Guid.Empty, title, pubDate, description, url, picture);
         return article;
 
     }

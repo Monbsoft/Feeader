@@ -20,11 +20,13 @@ namespace Monbsoft.Feeader.Api.Controllers
 
         // GET: articles
         [HttpGet]
-        public async Task<IEnumerable<ArticleDto>> ListAsync(Guid? feedId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ArticleDto>> ListAsync(Guid? feedId, int? limit, CancellationToken cancellationToken)
         {
             var articles = await _mediator.Send(new ListArticlesQuery
             {
-                FeedId = feedId
+                FeedId = feedId,
+                Limit = limit,
+                
             }, cancellationToken);
             return articles.Select(a => new ArticleDto(a));
         }
