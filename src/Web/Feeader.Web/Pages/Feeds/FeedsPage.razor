@@ -3,34 +3,43 @@
 @inject FeedService FeedService
 @inject ILogger<FeedsPage> Logger
 
-<MudGrid>
-    <MudItem xs="8">
-        <MudText Typo="Typo.h3">Feeds</MudText>
-    </MudItem>
-    <MudItem Class="d-flex align-center justify-right" xs="4">
-        <MudButton Variant="Variant.Outlined" Href="/feeds/create">Create</MudButton>
-    </MudItem>
-</MudGrid>
+
 
 @if(_feeds == null)
 {
     <Loading/>
 }
 else
-{
-    <MudTable Items="@_feeds" Hover="true" Bordered="true" Striped="true" SortLabel="Sort By">
-        <HeaderContent>
-            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Feed, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
-            <MudTh><MudTableSortLabel SortBy="new Func<Feed, object>(x=>x.Updated)">Updated</MudTableSortLabel></MudTh>
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd DataLabel="Name"><MudLink Href="@($"/feeds/{context.Id}")">@context.Name</MudLink></MudTd>
-            <MudTd DataLabel="Updated">@context.Updated.Humanize()</MudTd>
-        </RowTemplate>
-    <PagerContent>
-        <MudTablePager />
-    </PagerContent>
-    </MudTable>
+{  
+    <MudGrid>
+        <MudItem xs="2">
+            <NavMenu/>
+        </MudItem>
+        <MudItem xs="10">
+        <MudGrid>
+            <MudItem xs="8">
+                <MudText Typo="Typo.h3">Feeds</MudText>
+            </MudItem>
+            <MudItem Class="d-flex align-center justify-right" xs="4">
+                <MudButton Variant="Variant.Outlined" Href="/feeds/create">Create</MudButton>
+            </MudItem>
+        </MudGrid >
+            <MudTable Items="@_feeds" Hover="true" Bordered="true" Striped="true" SortLabel="Sort By">
+                <HeaderContent>
+                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Feed, object>(x=>x.Name)">Name</MudTableSortLabel></MudTh>
+                    <MudTh><MudTableSortLabel SortBy="new Func<Feed, object>(x=>x.Updated)">Updated</MudTableSortLabel></MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Name"><MudLink Href="@($"/feeds/{context.Id}")">@context.Name</MudLink></MudTd>
+                    <MudTd DataLabel="Updated">@context.Updated.Humanize()</MudTd>
+                </RowTemplate>
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+            </MudTable>
+        </MudItem>
+    </MudGrid>
+
 }
 
 @code {

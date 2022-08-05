@@ -1,0 +1,53 @@
+﻿@page "/categories/create"
+@using System.ComponentModel.DataAnnotations
+@implements IDisposable
+@inject FeedService FeedService
+@inject NavigationManager NavigationManager
+@inject ILogger<CreateCategoryPage> Logger
+
+<EditForm Model="@_createModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Create a category</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField Label="Genre" @bind-Value="_createModel.Genre" For="@(() => _createModel.Genre)" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Create</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    private CreateModel _createModel = new();
+    private CancellationTokenSource _cts = new();
+
+        private async Task HandleValidSubmit()
+    {
+
+        await FeedService.CreateCategoryAsync(new CreateCategory(_createModel.Genre!), _cts.Token);
+        NavigationManager.NavigateTo("/settings/categories");
+        Logger.LogInformation("Category created");
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+
+    private record CreateModel()
+    {
+        [Required]
+        public string? Genre { get; set; }
+    }
+
+}

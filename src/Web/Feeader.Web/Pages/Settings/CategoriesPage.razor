@@ -1,0 +1,50 @@
+﻿@page "/settings/categories"
+@implements IDisposable
+@inject FeedService FeedService
+@inject ILogger<CategoriesPage> Logger
+
+@if (_categories == null)
+{
+    <Loading />
+}
+else
+{
+    <MudGrid>
+        <MudItem xs="2">
+            <NavMenu />
+        </MudItem>
+        <MudItem xs="10">
+            <MudGrid>
+                <MudItem xs="8">
+                    <MudText Typo="Typo.h3">Categories</MudText>
+                </MudItem>
+                <MudItem Class="d-flex align-center justify-right" xs="4">
+                    <MudButton Variant="Variant.Outlined" Href="/categories/create">Create</MudButton>
+                </MudItem>
+            </MudGrid>
+            <MudGrid>
+                @foreach (var category in _categories)
+                {
+                    <MudText>@category.Genre</MudText>
+                }
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    private CancellationTokenSource _cts = new();
+    private Category[] _categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await FeedService.ListCategoriesAsync(_cts.Token);
+        Logger.LogInformation("{Count} categories listed", _categories?.Length);
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+}

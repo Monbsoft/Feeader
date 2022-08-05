@@ -12,6 +12,7 @@ namespace Monbsoft.Feeader.Api.Models
             Date = article.Date;
             Url = article.Url;
             Picture = article.Picture;
+            FeedName = article?.Feed?.Name;
         }
 
         public Guid Id { get; }
@@ -20,5 +21,6 @@ namespace Monbsoft.Feeader.Api.Models
         public DateTime Date { get; }
         public string Url { get; }
         public string Picture { get; }
+        public string? FeedName { get; }
     }
 }

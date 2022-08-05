@@ -1,24 +1,29 @@
-﻿ <MudList Clickable="true">
+﻿<MudGrid Class="mt-8">
 @foreach(var article in Articles)
 {
-    <MudListItem Href="@article.Url" Target="_blank">
-        <MudCard>
-                <MudCardMedia Image="@article.Picture" Height="200" />
+    <MudItem xs="12" sm="6" md="4">
+        <a class="article" href="@article.Url" target="_blank">
+        <MudCard Elevation="5" Class="rounded-lg pb-4" Style="height: 400px;">
+            <MudCardMedia Image="@article.Picture" Height="200" />
             <MudCardContent>
                 <MudText Typo="Typo.h5">@article.Title</MudText>
-                <MudText Typo="Typo.body2">@article.Date.Humanize()</MudText>
+                <div class="mt-2 d-flex">
+                    <MudText Typo="Typo.body2">@article.Date.Humanize()</MudText>
+                    <MudText Class="ml-auto" Typo="Typo.body2">@article?.FeedName</MudText>
+                </div>
                 <MudText Typo="Typo.body1">@article.Description</MudText>
             </MudCardContent>
         </MudCard>
-        </MudListItem>
-    }
-    </MudList>
+        </a>
+    </MudItem>
 
-
+}
+</MudGrid>
 
 @code {
 
     [Parameter]
     public IReadOnlyCollection<Article> Articles { get; set; }
+
 
 }

@@ -16,5 +16,6 @@ namespace Monbsoft.Feeader.Domain
         public DateTime Created { get; private set; } = DateTime.Now;
         public DateTime Updated { get; private set; } = DateTime.Now;
         public ICollection<Article> Articles { get; private set; } = new List<Article>();
+        public Category? Category { get; private set; } = null;
     }
 }

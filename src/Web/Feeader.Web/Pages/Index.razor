@@ -3,14 +3,23 @@
 @inject FeedService FeedService
 @inject ILogger<Index> Logger
 
-<PageTitle>Index</PageTitle>
+<PageTitle>News</PageTitle>
 @if(_articles == null)
 {
     <Loading/>
 }
 else 
 {
-    <ArticleList Articles="@_articles"/>
+    <MudGrid>
+        <MudItem xs="2">
+            <NavMenu/>
+        </MudItem>
+        <MudItem xs="10">
+            <MudText Typo="Typo.h3">News</MudText>
+            <ArticleList Articles="@_articles"/>
+        </MudItem>
+    </MudGrid>
+
 }
 
 @code {

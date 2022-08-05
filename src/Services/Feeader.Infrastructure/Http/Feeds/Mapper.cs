@@ -24,10 +24,10 @@ internal static class Mapper
     private static Article Map(Item item)
     {
         var title = item.Title ?? string.Empty;
-        var description = item.Summary ?? item.Description ?? String.Empty;
+        var description = item.Summary ?? item.Description ?? string.Empty;
         var url = item.Link ?? item.Enclosure?.Url ?? throw new ArgumentNullException(nameof(Item.Link));
         var pubDate = RssHelper.ConvertDateTime(item.PubDate).GetValueOrDefault();
-        var picture = item.Enclosure?.Url ?? String.Empty;
+        var picture = item.Enclosure?.Url ?? string.Empty;
 
         var article = new Article(Guid.Empty, title, pubDate, description, url, picture);
         return article;

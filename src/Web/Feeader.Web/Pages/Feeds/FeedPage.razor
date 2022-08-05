@@ -11,14 +11,19 @@
 }
 else
 {
-    <MudText Typo="Typo.overline">@_feed.Updated.Humanize()</MudText>
+    
+    <MudBreadcrumbs Items="_items" Separator=">"></MudBreadcrumbs>
     <ArticleList Articles="@_feed.Articles"/>
 
 }
 
 @code {
     private CancellationTokenSource _cts = new();
-    private Models.Feed? _feed;
+    private Models.Feed? _feed;   
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Feeds", href: "/feeds"),
+    };
 
     [Parameter]
     public Guid Id { get; set; }
@@ -26,6 +31,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         _feed = await FeedService.GetFeedAsync(Id, _cts.Token);
+        _items.Add(new BreadcrumbItem(_feed.Name, href: null, disabled: true));
         Logger.LogInformation($"{_feed?.Articles?.Count} articles found");
     }
 

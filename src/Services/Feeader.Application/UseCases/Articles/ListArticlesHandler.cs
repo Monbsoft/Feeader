@@ -24,12 +24,12 @@ internal class ListArticlesHandler : IRequestHandler<ListArticlesQuery, List<Art
 
     public async Task<List<Article>> Handle(ListArticlesQuery request, CancellationToken cancellationToken)
     {
-        var articlesQuery = _dbContext.Articles.AsQueryable();
+        var articlesQuery = _dbContext.Articles.Include(a => a.Feed).OrderByDescending(a => a.Date).AsQueryable();
         if (request.FeedId is not null)
             articlesQuery = articlesQuery.Where(a => request.FeedId.Equals(a.FeedId));
         if (request.Limit is not null)
             articlesQuery = articlesQuery.Take(request.Limit.Value);
-        var articles = await articlesQuery.OrderByDescending(a => a.Date).ToListAsync(cancellationToken);
+        var articles = await articlesQuery.ToListAsync(cancellationToken);
         return articles;
     }
 }
