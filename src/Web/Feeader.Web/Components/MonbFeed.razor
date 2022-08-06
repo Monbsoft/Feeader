@@ -1,0 +1,23 @@
+﻿<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Feed.Name</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            <MudIconButton Href="@($"/feeds/edit/{Feed.Id}")" Icon="@Icons.Material.Filled.Settings" Color="Color.Default" />
+        </CardHeaderActions>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">@Feed.Updated.Humanize()</MudText>
+        <MudText>@Feed.Url</MudText>
+    </MudCardContent>
+</MudCard>
+@code {    
+    [Parameter]
+    public Feed Feed { get; set; }
+
+
+
+
+
+}

@@ -3,8 +3,6 @@
 @inject FeedService FeedService
 @inject ILogger<FeedsPage> Logger
 
-
-
 @if(_feeds == null)
 {
     <Loading/>
@@ -39,7 +37,6 @@ else
             </MudTable>
         </MudItem>
     </MudGrid>
-
 }
 
 @code {

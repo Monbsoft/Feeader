@@ -14,5 +14,10 @@ namespace Monbsoft.Feeader.Domain
         public DateTime Created { get; private set; } = DateTime.Now;
         public DateTime Updated { get; private set; } = DateTime.Now;
         public ICollection<Feed> Feeds { get; private set; } = new List<Feed>();
+
+        public void UpdateDetails(string genre)
+        {
+            Genre = genre;
+        }
     }
 }

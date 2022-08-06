@@ -7,8 +7,8 @@ namespace Monbsoft.Feeader.Domain
         public Feed(Guid id, string name, string url)
         {
             Id = id;
-            Name= name;
-            Url= url;
+            Name = name;
+            Url = url;
         }
 
         public string Name { get; private set; }
@@ -16,6 +16,17 @@ namespace Monbsoft.Feeader.Domain
         public DateTime Created { get; private set; } = DateTime.Now;
         public DateTime Updated { get; private set; } = DateTime.Now;
         public ICollection<Article> Articles { get; private set; } = new List<Article>();
+        public Guid? CategoryId { get; private set; }
         public Category? Category { get; private set; } = null;
+
+        public void UpdateDetails(string name, string url)
+        {
+            Name = name;
+            Url = url;
+        }
+        public void UpdateCategory(Guid? categoryId)
+        {
+            CategoryId = categoryId;
+        }
     }
 }

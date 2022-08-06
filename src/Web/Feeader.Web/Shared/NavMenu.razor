@@ -1,6 +1,19 @@
-﻿<MudNavMenu Class="mt-2">
+﻿@inject FeedService FeedService;
+<MudNavMenu Class="mt-2">
     <MudNavLink Href="/" Match="NavLinkMatch.All">Home</MudNavLink>
+    @foreach(var category in _categories)
+    {
+        <MudNavLink Href="@($"/feeds/?category={category.Id}")">@category.Genre</MudNavLink>
+    }
     <MudNavLink Href="/feeds">Feeds</MudNavLink>
-
 </MudNavMenu>
+
+@code {
+    private Category[] _categories;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categories = await FeedService.ListCategoriesAsync(CancellationToken.None) ?? new Category[] {};
+    }
+}
 

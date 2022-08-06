@@ -20,7 +20,7 @@ public class ListFeedsHandler : IRequestHandler<ListFeedsQuery, List<Feed>>
 
     public async Task<List<Feed>> Handle(ListFeedsQuery request, CancellationToken cancellationToken)
     {
-        var feeds = await _dbContext.Feeds.ToListAsync(cancellationToken);
+        var feeds = await _dbContext.Feeds.OrderBy(f => f.Name).ToListAsync(cancellationToken);
         return feeds;
     }
 }

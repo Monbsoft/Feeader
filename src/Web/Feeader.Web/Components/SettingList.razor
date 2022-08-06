@@ -1,0 +1,30 @@
+﻿    <MudGrid>
+        <MudItem xs="2">
+            <NavMenu />
+        </MudItem>
+        <MudItem xs="10">
+            <MudGrid>
+                <MudItem xs="8">
+                    <MudText Typo="Typo.h3">@Title</MudText>
+                </MudItem>
+                <MudItem Class="d-flex align-center justify-right" xs="4">
+                    @ActionContent                    
+                </MudItem>
+            </MudGrid>
+            <MudGrid>
+                <MudItem xs="12">
+                    @ChildContent
+                </MudItem>
+
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public RenderFragment? ActionContent { get; set; }
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

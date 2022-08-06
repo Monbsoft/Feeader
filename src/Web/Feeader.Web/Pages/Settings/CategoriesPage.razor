@@ -9,27 +9,22 @@
 }
 else
 {
-    <MudGrid>
-        <MudItem xs="2">
-            <NavMenu />
-        </MudItem>
-        <MudItem xs="10">
-            <MudGrid>
-                <MudItem xs="8">
-                    <MudText Typo="Typo.h3">Categories</MudText>
-                </MudItem>
-                <MudItem Class="d-flex align-center justify-right" xs="4">
-                    <MudButton Variant="Variant.Outlined" Href="/categories/create">Create</MudButton>
-                </MudItem>
-            </MudGrid>
-            <MudGrid>
-                @foreach (var category in _categories)
-                {
-                    <MudText>@category.Genre</MudText>
-                }
-            </MudGrid>
-        </MudItem>
-    </MudGrid>
+    <SettingList Title="Categories">
+        <ActionContent>
+            <MudButton Variant="Variant.Outlined" Href="/categories/create">Create</MudButton>
+        </ActionContent>
+        <ChildContent>
+        @foreach (var category in _categories)
+        {
+            <MudCard>
+                <MudCardContent>
+                    <MudText Typo="Typo.h5">@category.Genre</MudText>
+                    <MudText Typo="Typo.body2">@category.Updated.Humanize()</MudText>
+                </MudCardContent>
+            </MudCard>
+        }
+        </ChildContent>
+    </SettingList>
 }
 
 @code {

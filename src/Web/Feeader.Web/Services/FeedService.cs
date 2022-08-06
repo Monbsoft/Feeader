@@ -28,9 +28,12 @@ public class FeedService
         _httpClient.GetFromJsonAsync<Article[]>($"/articles?feedId={feedId}", cancellationToken);    
     public Task<Article[]> ListArticlesAsync(int limit, CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Article[]>($"/articles?limit={limit}", cancellationToken);
-    public Task<Category[]> ListCategoriesAsync(CancellationToken cancellationToken) =>
+    public Task<Category[]?> ListCategoriesAsync(CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Category[]>($"/categories", cancellationToken);
     public Task<Feed[]?> ListFeedsAsync(CancellationToken cancellationToken) =>
         _httpClient.GetFromJsonAsync<Feed[]>("feeds", cancellationToken);
-
+    public async Task UpdateFeedAsync(UpdateFeed request, CancellationToken cancellationToken)
+    {
+        _ = await _httpClient.PutAsJsonAsync<UpdateFeed>($"/feeds/{Uri.EscapeUriString(request.Id.ToString())}", request, cancellationToken);
+    }
 }

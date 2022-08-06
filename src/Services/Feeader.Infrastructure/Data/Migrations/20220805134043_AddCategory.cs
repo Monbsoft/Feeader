@@ -34,35 +34,35 @@ namespace Monbsoft.Feeader.Infrastructure.Data.Migrations
                 keyColumn: "Id",
                 keyValue: new Guid("5660e7b9-7555-4d3f-b863-df658440820b"),
                 column: "Created",
-                value: new DateTime(2022, 8, 5, 12, 20, 56, 921, DateTimeKind.Local).AddTicks(3600));
+                value: new DateTime(2022, 8, 5, 15, 40, 42, 642, DateTimeKind.Local).AddTicks(3461));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: new Guid("5ebb45a0-5fff-49ac-a5d5-691e6314ce71"),
                 column: "Created",
-                value: new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6889));
+                value: new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4368));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: new Guid("71a2df8c-cb34-4203-b045-375695439b8b"),
                 column: "Created",
-                value: new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6893));
+                value: new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4372));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: new Guid("bcb81fd8-ab1d-4874-af23-35513d3d673d"),
                 column: "Created",
-                value: new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6885));
+                value: new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4363));
 
             migrationBuilder.UpdateData(
                 table: "Feeds",
                 keyColumn: "Id",
                 keyValue: new Guid("cbab58bb-fa24-46b9-b68d-ee25ddefb1a6"),
                 column: "Created",
-                value: new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6868));
+                value: new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4345));
 
             migrationBuilder.CreateIndex(
                 name: "IX_Feeds_CategoryId",

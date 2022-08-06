@@ -1,0 +1,77 @@
+﻿@page "/feeds/edit/{id:guid}"
+@using System.ComponentModel.DataAnnotations
+@implements IDisposable
+@inject FeedService FeedService
+@inject NavigationManager NavigationManager
+@inject ILogger<EditFeedPage> Logger
+
+<EditForm Model="@_model" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h5">Edit a feed</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField Label="Url" @bind-Value="_model.Url" For="@(() => _model.Url)" />
+                    <MudTextField Label="Name" Class="mt-3" @bind-Value="_model.Name" For="@(() => _model.Name)" />
+                    <MudSelect T="Category" Label="Category" @bind-Value="_model.Category" For="@(() => _model.Category)" Clearable>
+                        @foreach(var category in _categories)
+                        {
+                            <MudSelectItem Value="@category"/>
+                        }
+                    </MudSelect>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Edit</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    private UpdateModel _model;
+    private Category[] _categories;
+    private CancellationTokenSource _cts = new();
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var feed = await FeedService.GetFeedAsync(Id, _cts.Token);
+        _model = new UpdateModel
+            {
+                Name = feed.Name,
+                Url = feed.Url
+            };
+        _categories = await FeedService.ListCategoriesAsync(_cts.Token) ?? new Category[] {};
+    }
+
+    private async Task HandleValidSubmit()
+    {
+
+        await FeedService.UpdateFeedAsync(new UpdateFeed(Id, _model.Name!, _model.Url!, _model.Category?.Id), _cts.Token);
+        NavigationManager.NavigateTo("/settings/feeds");
+        Logger.LogInformation("Feed updated");
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+
+    private record UpdateModel()
+    {
+        [Required]
+        public string? Url { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        public Category? Category { get; set; }
+    }
+}

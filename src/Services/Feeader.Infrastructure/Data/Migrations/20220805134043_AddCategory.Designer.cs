@@ -12,7 +12,7 @@ using Monbsoft.Feeader.Infrastructure.Data;
 namespace Monbsoft.Feeader.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(FeeaderDbContext))]
-    [Migration("20220805102057_AddCategory")]
+    [Migration("20220805134043_AddCategory")]
     partial class AddCategory
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,41 +119,41 @@ namespace Monbsoft.Feeader.Infrastructure.Data.Migrations
                         new
                         {
                             Id = new Guid("5660e7b9-7555-4d3f-b863-df658440820b"),
-                            Created = new DateTime(2022, 8, 5, 12, 20, 56, 921, DateTimeKind.Local).AddTicks(3600),
+                            Created = new DateTime(2022, 8, 5, 15, 40, 42, 642, DateTimeKind.Local).AddTicks(3461),
                             Name = "BBC News",
-                            Updated = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(4844),
+                            Updated = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(2148),
                             Url = "http://feeds.bbci.co.uk/news/world/rss.xml"
                         },
                         new
                         {
                             Id = new Guid("cbab58bb-fa24-46b9-b68d-ee25ddefb1a6"),
-                            Created = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6868),
+                            Created = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4345),
                             Name = "The New York Times",
-                            Updated = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6878),
+                            Updated = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4356),
                             Url = "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml"
                         },
                         new
                         {
                             Id = new Guid("bcb81fd8-ab1d-4874-af23-35513d3d673d"),
-                            Created = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6885),
+                            Created = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4363),
                             Name = "CNN",
-                            Updated = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6887),
+                            Updated = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4365),
                             Url = "http://rss.cnn.com/rss/edition_world.rss"
                         },
                         new
                         {
                             Id = new Guid("5ebb45a0-5fff-49ac-a5d5-691e6314ce71"),
-                            Created = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6889),
+                            Created = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4368),
                             Name = "CNBC",
-                            Updated = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6891),
+                            Updated = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4369),
                             Url = "https://www.cnbc.com/id/100727362/device/rss/rss.html"
                         },
                         new
                         {
                             Id = new Guid("71a2df8c-cb34-4203-b045-375695439b8b"),
-                            Created = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6893),
+                            Created = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4372),
                             Name = "The Washington Post",
-                            Updated = new DateTime(2022, 8, 5, 12, 20, 56, 924, DateTimeKind.Local).AddTicks(6895),
+                            Updated = new DateTime(2022, 8, 5, 15, 40, 42, 646, DateTimeKind.Local).AddTicks(4374),
                             Url = "https://feeds.washingtonpost.com/rss/world"
                         });
                 });

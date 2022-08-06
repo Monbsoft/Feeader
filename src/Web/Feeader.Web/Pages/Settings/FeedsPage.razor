@@ -1,0 +1,42 @@
+﻿@page "/settings/feeds"
+@implements IDisposable
+@inject FeedService FeedService
+@inject ILogger<FeedsPage> Logger
+
+
+@if (_feeds == null)
+{
+    <Loading />
+}
+else
+{
+    <SettingList Title="Feeds">
+        <ActionContent>
+            <MudButton Variant="Variant.Outlined" Href="/feeds/create">Create</MudButton>
+        </ActionContent>
+        <ChildContent>
+            @foreach (var feed in _feeds)
+            {
+                <MonbFeed Feed="@feed"/>
+            }
+        </ChildContent>
+    </SettingList>
+}
+
+@code {
+    private CancellationTokenSource _cts = new();
+    private Feed[] _feeds;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _feeds = await FeedService.ListFeedsAsync(_cts.Token) ?? new Feed[] { };
+        Logger.LogInformation("{Count} feeds listed", _feeds?.Length);
+    }
+
+    public void Dispose()
+    {
+        _cts.Cancel();
+        _cts.Dispose();
+    }
+}
+
