@@ -3,7 +3,7 @@
     <MudNavLink Href="/" Match="NavLinkMatch.All">Home</MudNavLink>
     @foreach(var category in _categories)
     {
-        <MudNavLink Href="@($"/feeds/?category={category.Id}")">@category.Genre</MudNavLink>
+        <MudNavLink Href="@($"/categories/{category.Id}")">@category.Genre</MudNavLink>
     }
     <MudNavLink Href="/feeds">Feeds</MudNavLink>
 </MudNavMenu>

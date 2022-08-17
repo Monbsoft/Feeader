@@ -1,0 +1,37 @@
+﻿@page "/categories/{id:guid}"
+@inject FeedService FeedService;
+<PageTitle>Category</PageTitle>
+@if (_category == null)
+{
+    <Loading />
+}
+else
+{
+    <MudGrid>
+        <MudItem xs="2">
+            <NavMenu />
+        </MudItem>
+        <MudItem xs="10">
+            <MudGrid>
+                <MudItem xs="8">
+                    <MudText Typo="Typo.h3">Category @_category.Genre</MudText>
+                </MudItem>
+                <MudItem Class="d-flex align-center justify-right" xs="4">
+                    <MudButton Variant="Variant.Outlined" Href="/feeds/create">Create</MudButton>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    private Category? _category;
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _category = await FeedService.GetCategoryAsync(Id, CancellationToken.None);
+    }
+}

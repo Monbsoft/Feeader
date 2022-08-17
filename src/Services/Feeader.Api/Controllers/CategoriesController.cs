@@ -40,14 +40,17 @@ namespace Monbsoft.Feeader.Api.Controllers
                 Limit = limit,
 
             }, cancellationToken);
+            _logger.LogInformation($"{categories.Count} categories listed");
             return categories.Select(c => new CategoryDto(c));
         }
 
-        // GET api/<CategoriesController>/5
+        // GET categories/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<CategoryDto> GetAsync(Guid id, CancellationToken cancellationToken)
         {
-            return "value";
+            var category = await _mediator.Send(new GetCategoryQuery(id), cancellationToken);
+            _logger.LogDebug($"Category {id} got");
+            return new CategoryDto(category);
         }
 
         // PUT api/<CategoriesController>/5
