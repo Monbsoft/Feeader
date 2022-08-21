@@ -14,12 +14,12 @@ public class GetFeedQuery : IRequest<Feed>
     public Guid Id { get; }
 }
 
-public class GetFeedHandler : IRequestHandler<GetFeedQuery, Feed?>
+public class GetFeedQueryHandler : IRequestHandler<GetFeedQuery, Feed?>
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly IFeedClient _feedClient;
 
-    public GetFeedHandler(IApplicationDbContext dbContext, IFeedClient feedClient)
+    public GetFeedQueryHandler(IApplicationDbContext dbContext, IFeedClient feedClient)
     {
         _dbContext = dbContext;
         _feedClient = feedClient;

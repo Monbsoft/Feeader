@@ -10,13 +10,13 @@ public class UpdateFeedsCommand : IRequest<int>
 {
 }
 
-public class UpdateFeedsHandler : IRequestHandler<UpdateFeedsCommand, int>
+public class UpdateFeedsCommandHandler : IRequestHandler<UpdateFeedsCommand, int>
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly IFeedClient _feedClient;
-    private readonly ILogger<UpdateFeedsHandler> _logger;
+    private readonly ILogger<UpdateFeedsCommandHandler> _logger;
 
-    public UpdateFeedsHandler(IApplicationDbContext dbContext, IFeedClient feedClient, ILogger<UpdateFeedsHandler> logger)
+    public UpdateFeedsCommandHandler(IApplicationDbContext dbContext, IFeedClient feedClient, ILogger<UpdateFeedsCommandHandler> logger)
     {
         _dbContext = dbContext;
         _feedClient = feedClient;

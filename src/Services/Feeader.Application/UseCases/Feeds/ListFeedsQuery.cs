@@ -9,11 +9,11 @@ public class ListFeedsQuery : IRequest<List<Feed>>
 {
 }
 
-public class ListFeedsHandler : IRequestHandler<ListFeedsQuery, List<Feed>>
+public class ListFeedsQueryHandler : IRequestHandler<ListFeedsQuery, List<Feed>>
 {
     private readonly IApplicationDbContext _dbContext;
 
-    public ListFeedsHandler(IApplicationDbContext dbContext)
+    public ListFeedsQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

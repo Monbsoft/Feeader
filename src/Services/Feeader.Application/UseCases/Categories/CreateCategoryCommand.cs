@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Monbsoft.Feeader.Application.Interfaces;
 using Monbsoft.Feeader.Domain;
 
@@ -14,13 +15,15 @@ public class CreateCategoryCommand : IRequest<Guid>
     public string Genre { get; }
 }
 
-public class CreateFeedHandler : IRequestHandler<CreateCategoryCommand, Guid>
+public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Guid>
 {
     private readonly IApplicationDbContext _dbContext;
+    private readonly ILogger<CreateCategoryCommandHandler> _logger;
 
-    public CreateFeedHandler(IApplicationDbContext dbContext)
+    public CreateCategoryCommandHandler(IApplicationDbContext dbContext, ILogger<CreateCategoryCommandHandler> logger)
     {
         _dbContext = dbContext;
+        _logger = logger;
     }
 
     public async Task<Guid> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
@@ -28,6 +31,7 @@ public class CreateFeedHandler : IRequestHandler<CreateCategoryCommand, Guid>
         var category = new Category(Guid.NewGuid(), request.Genre);
         await _dbContext.Categories.AddAsync(category, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
+        _logger.LogInformation("Category {Id} created", category.Id);
         return category.Id;
     }
 }

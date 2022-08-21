@@ -18,12 +18,12 @@ public class GetCategoryQuery : IRequest<Category>
     }
     public Guid Id { get; }
 }
-public class GetCategoryHandler : IRequestHandler<GetCategoryQuery, Category?>
+public class GetCategoryHandlerQuery : IRequestHandler<GetCategoryQuery, Category?>
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly IFeedClient _feedClient;
 
-    public GetCategoryHandler(IApplicationDbContext dbContext, IFeedClient feedClient)
+    public GetCategoryHandlerQuery(IApplicationDbContext dbContext, IFeedClient feedClient)
     {
         _dbContext = dbContext;
         _feedClient = feedClient;

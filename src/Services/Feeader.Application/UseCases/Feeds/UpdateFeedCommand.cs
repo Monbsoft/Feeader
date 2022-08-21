@@ -14,12 +14,12 @@ public class UpdateFeedCommand : IRequest<Guid>
     public Guid? CategoryId { get; set; }
 }
 
-public class UpdateFeedHandler : IRequestHandler<UpdateFeedCommand, Guid>
+public class UpdateFeedCommandHandler : IRequestHandler<UpdateFeedCommand, Guid>
 {
     private IServiceScopeFactory _serviceScopeFactory;
-    private readonly ILogger<UpdateFeedHandler> _logger;
+    private readonly ILogger<UpdateFeedCommandHandler> _logger;
 
-    public UpdateFeedHandler(IServiceScopeFactory serviceScopeFactory, ILogger<UpdateFeedHandler> logger)
+    public UpdateFeedCommandHandler(IServiceScopeFactory serviceScopeFactory, ILogger<UpdateFeedCommandHandler> logger)
     {
         _serviceScopeFactory = serviceScopeFactory;
         _logger = logger;
@@ -29,6 +29,7 @@ public class UpdateFeedHandler : IRequestHandler<UpdateFeedCommand, Guid>
     {
         try
         {
+            _logger.LogDebug("Updating feed {Id}...", request.Id);
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<IApplicationDbContext>()!;
@@ -36,6 +37,7 @@ public class UpdateFeedHandler : IRequestHandler<UpdateFeedCommand, Guid>
                 feed.UpdateDetails(request.Name, request.Url);
                 feed.UpdateCategory(request.CategoryId);
                 await dbContext.SaveChangesAsync(cancellationToken);
+                _logger.LogInformation("Feed {Id} updated", feed.Id);
             }
         }
         catch (Exception ex)

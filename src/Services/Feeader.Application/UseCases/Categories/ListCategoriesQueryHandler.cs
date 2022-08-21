@@ -11,11 +11,11 @@ public class ListCategoriesQuery : IRequest<List<Category>>
     public int? Limit { get; set; }
 }
 
-internal class ListCategoriesHandler : IRequestHandler<ListCategoriesQuery, List<Category>>
+internal class ListCategoriesQueryHandler : IRequestHandler<ListCategoriesQuery, List<Category>>
 {
     private readonly IApplicationDbContext _dbContext;
 
-    public ListCategoriesHandler(IApplicationDbContext dbContext)
+    public ListCategoriesQueryHandler(IApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
 
